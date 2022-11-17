@@ -4,6 +4,10 @@
 ## solution
 
 ### WrappingInt32
+这里需要在 isn、abs_seq_no，seq_no之间相互转换
+
+转换图如下：
+![](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/images/2022/11/15/20221115210405-a4b03e.png)
 
 ```cpp
 //! Transform an "absolute" 64-bit sequence number (zero-indexed) into a WrappingInt32
@@ -47,7 +51,8 @@ uint64_t unwrap(WrappingInt32 n, WrappingInt32 isn, uint64_t checkpoint) {
 
 ### tcp_receiver header
 
-
+贴一个状态转移图：
+![](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/images/2022/11/15/20221115210254-e6ba52.png)
 
 ```cpp
 //! Receives and reassembles segments into a ByteStream, and computes
