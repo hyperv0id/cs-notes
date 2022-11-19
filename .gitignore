@@ -2,3 +2,5 @@
 .trash/**
 .diary/**
 .templates/**
+templates/**
+diary/**
