@@ -1,3 +1,6 @@
+---
+tags: ["#spring #spring/spring-cloud"]
+---
 ![image-20221117193426852](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/2022/11/17/image-20221117193426852-871101.png)
 
 
@@ -8,13 +11,13 @@
 
 主机挂了就全挂了
 
-
+例：nginx挂载多个tomcat
 
 ### 去中心化模式
 
 更加高可用
 
-
+raft算法
 
 ## Eureka的集群模式
 

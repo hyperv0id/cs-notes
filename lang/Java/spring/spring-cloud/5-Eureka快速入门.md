@@ -1,3 +1,6 @@
+---
+tags: ["#spring #spring/spring-cloud"]
+---
 
 ## 搭建注册中心
 
