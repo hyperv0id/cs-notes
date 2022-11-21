@@ -1,4 +1,4 @@
 ---
-tags: ["#spring #spring-security"]
+tags: ["#spring #spring/spring-security"]
 ---
 

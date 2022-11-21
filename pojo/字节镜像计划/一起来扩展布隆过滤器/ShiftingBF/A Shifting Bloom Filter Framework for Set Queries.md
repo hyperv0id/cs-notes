@@ -1,3 +1,6 @@
+---
+tags: ["#data-structure #data-structure/bloom-filter"]
+---
 # A Shifting Bloom Filter Framework for Set Queries
 
 [TOC]

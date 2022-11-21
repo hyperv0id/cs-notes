@@ -54,7 +54,6 @@ public class CW1_Sol1 {
         }
         @Override
         public void run() {
-            // TODO  
             if(preThread != null){
                 try{
                     P();

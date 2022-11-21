@@ -1,3 +1,6 @@
+---
+tags: ["#spring #spring/spring-security "]
+---
 # SpringSecurity从入门到精通
 
 ## 课程介绍
@@ -968,7 +971,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if(Objects.isNull(user)){
             throw new RuntimeException("用户名或密码错误");
         }
-        //TODO 根据用户查询权限信息 添加到LoginUser中
         
         //封装成UserDetails对象返回 
         return new LoginUser(user);
@@ -1199,7 +1201,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             throw new RuntimeException("用户未登录");
         }
         //存入SecurityContextHolder
-        //TODO 获取权限信息封装到Authentication中
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(loginUser,null,null);
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
@@ -1484,7 +1485,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if(Objects.isNull(user)){
             throw new RuntimeException("用户名或密码错误");
         }
-        //TODO 根据用户查询权限信息 添加到LoginUser中
         List<String> list = new ArrayList<>(Arrays.asList("test"));
         return new LoginUser(user,list);
     }

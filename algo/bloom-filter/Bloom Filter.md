@@ -1,3 +1,7 @@
+---
+tags: ["#data-structure #data-structure/bloom-filter"]
+---
+
 ## 开始之前
 给你 2000万 个url，又给你一个新的url: $u_1$，让你判断 $u_1$ 是否在原来的 200万个url中，这时你会怎么办呢
 

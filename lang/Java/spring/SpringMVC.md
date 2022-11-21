@@ -1,3 +1,6 @@
+---
+tags: ["#spring #spring/spring-mvc"]
+---
 # SpringMVC
 
 [toc]

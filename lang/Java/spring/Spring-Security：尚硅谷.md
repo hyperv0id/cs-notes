@@ -1,6 +1,6 @@
 ---
 Category: #spring/spring-security 
-tags: ["#spring #spring/security"]
+tags: ["#spring #spring/spring-security"]
 Parent: [[Spring]]
 ---
 
@@ -373,7 +373,6 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // TODO
         // 调用 UserMapper 查询数据库
         LambdaQueryWrapper<UserDomain> qw = new LambdaQueryWrapper<>();
         // 按照用户名查询
