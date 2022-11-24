@@ -1,5 +1,5 @@
 ---
-tags: ["#data-structure #data-structure/bloom-filter"]
+tags: ["数据结构/bloom-filter"]
 ---
 
 空间布隆过滤器，可以在不经过地图服务提供商的情况下，告知用户其是否在某位置附近。

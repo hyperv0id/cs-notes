@@ -1,5 +1,5 @@
 ---
-tags: ["#data-structure #data-structure/bloom-filter"]
+tags: ["#数据结构/bloom-filter"]
 ---
 # A Shifting Bloom Filter Framework for Set Queries
 
