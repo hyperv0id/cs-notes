@@ -1,5 +1,5 @@
 本项目为我的自学笔记，包括但不限于计算机基础、编程语言、数据结构与算法、以及项目笔记。
-数学公式采用`latex`语法github上暂不能显示，请下载[MathJax](https://chrome.google.com/webstore/detail/mathjax-plugin-for-github/ioemnmodlmafdkllaclgeombjnmnbima)插件辅助，或者clone到支持的markdown编辑器内
+数学公式采用 `latex` 语法，github上暂不能显示，请下载 [MathJax](https://chrome.google.com/webstore/detail/mathjax-plugin-for-github/ioemnmodlmafdkllaclgeombjnmnbima) 插件辅助，或者clone到支持的markdown编辑器内查看
 
 ## 语言
 
@@ -73,7 +73,7 @@
 - [Task06-卷积神经网络](ai/LeeML/Task06-卷积神经网络.md)
 
 ### 周志华西瓜书浅读
-
+进度：4/16
 - [3-线性模型](ai/watermelon/3-线性模型.md)
 - [4-决策树](ai/watermelon/4-决策树.md)
 
