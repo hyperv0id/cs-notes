@@ -1,5 +1,5 @@
 ---
-tags: ["数据结构/bloom-filter"]
+tags: ["#data-structure/bloom-filter"]
 ---
 
 ## 开始之前
