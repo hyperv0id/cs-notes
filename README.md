@@ -37,7 +37,6 @@
 
 - [LeetCode刷题LeetCode 101](algo/leetcode/LeetCode%20101.md)
 - [AcWing](algo/acwing/README.md)
-- 
 
 
 ## 计算机基础
@@ -76,6 +75,7 @@
 进度：4/16
 - [3-线性模型](ai/watermelon/3-线性模型.md)
 - [4-决策树](ai/watermelon/4-决策树.md)
+- [5-神经网络](ai/watermelon/5-神经网络.md)
 
 
 ## 项目
