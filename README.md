@@ -1,6 +1,8 @@
 本项目为我的自学笔记，包括但不限于计算机基础、编程语言、数据结构与算法、以及项目笔记。
 数学公式采用 `latex` 语法，github上暂不能显示，请下载 [MathJax](https://chrome.google.com/webstore/detail/mathjax-plugin-for-github/ioemnmodlmafdkllaclgeombjnmnbima) 插件辅助，或者clone到支持的markdown编辑器内查看
 
+
+
 ## 语言
 
 ### 汇编
@@ -25,6 +27,7 @@
 ## 数据结构
 
 ### 布隆过滤器
+- cpp代码实现：[bloom-filter](https://github.com/hyperv0id/bloom-filter)
 - [Bloom Filter](data-structure/bloom-filter/Bloom%20Filter.md)
 - 布隆过滤器其他变体
 	- [A Shifting Bloom Filter Framework for Set Queries](data-structure/bloom-filter/ShiftingBF/A%20Shifting%20Bloom%20Filter%20Framework%20for%20Set%20Queries.md)
@@ -72,15 +75,21 @@
 - [Task06-卷积神经网络](ai/LeeML/Task06-卷积神经网络.md)
 
 ### 周志华西瓜书浅读
-进度：4/16
+![进度](https://progress-bar.dev/37)
+
 - [3-线性模型](ai/watermelon/3-线性模型.md)
 - [4-决策树](ai/watermelon/4-决策树.md)
 - [5-神经网络](ai/watermelon/5-神经网络.md)
+- [6-支持向量机](ai/watermelon/6-svm.md)
+- 7-贝叶斯分类
+- 8-集成学习
 
 
 ## 项目
 
 ### 扩展布隆过滤器
+- 项目地址：[bloom-filter](https://github.com/hyperv0id/bloom-filter)
+- 笔记地址：[一起来扩展布隆过滤器](pojo/字节镜像计划/一起来扩展布隆过滤器/项目内容.md)
 
 
 
