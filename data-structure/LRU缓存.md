@@ -2,15 +2,15 @@
 tags: [" #data-structure/LRU-cache "]
 ---
 ## 什么是 LRU 缓存
-LRU: Last Recently Used，最近最少使用。它假设最近使用到的以后再次使用的概率更高，而你没有使用的可能很就都不会使用。
+LRU: Last Recently Used，最近最少使用。它假设最近使用到的以后再次使用的概率更高，而你没有使用的可能很久都不会使用。
 比如说，你同时打开微信、支付宝和日历和设置，这时候系统需要杀死一个后台节约资源，那么 LRU 策略会将最久没有使用的杀死。
 
 ## LRU 算法
 
 实现 `LRUCache` 类：
--   `LRUCache(int capacity)` 以 **正整数** 作为容量 `capacity` 初始化 LRU 缓存
--   `int get(int key)` 如果关键字 `key` 存在于缓存中，则返回关键字的值，否则返回 `-1` 。
--   `void put(int key, int value)` 如果关键字 `key` 已经存在，则变更其数据值 `value` ；如果不存在，则向缓存中插入该组 `key-value` 。如果插入操作导致关键字数量超过 `capacity` ，则应该 **逐出** 最久未使用的关键字。
+- `LRUCache(int capacity)` 以 **正整数** 作为容量 `capacity` 初始化 LRU 缓存
+- `int get(int key)` 如果关键字 `key` 存在于缓存中，则返回关键字的值，否则返回 `-1` 。
+- `void put(int key, int value)` 如果关键字 `key` 已经存在，则变更其数据值 `value` ；如果不存在，则向缓存中插入该组 `key-value` 。如果插入操作导致关键字数量超过 `capacity` ，则应该 **逐出** 最久未使用的关键字。
 - 函数 `get` 和 `put` 必须以 `O(1)` 的平均时间复杂度运行。
 
 ### Example:
@@ -38,7 +38,7 @@ lRUCache.get(4);    // 返回 4
 
 ## LRU 实现
 
-同时考虑哈希表和链表的优点，构建一个**哈希链表**， 使用链表快速排序、添加，使用哈希表快速索引。
+同时考虑哈希表和链表的优点，构建一个**哈希链表**：使用链表快速排序、添加，使用哈希表快速索引。
 
 
 ```c++

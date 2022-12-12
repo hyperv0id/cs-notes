@@ -2,7 +2,6 @@
 数学公式采用 `latex` 语法，github上暂不能显示，请下载 [MathJax](https://chrome.google.com/webstore/detail/mathjax-plugin-for-github/ioemnmodlmafdkllaclgeombjnmnbima) 插件辅助，或者clone到支持的markdown编辑器内查看
 
 
-
 ## 语言
 
 ### 汇编
@@ -10,10 +9,8 @@
 - [汇编语言-基于x86处理器-练习](lang/assembly/汇编语言-基于x86处理器-练习.md)
 
 ## cpp
-- [初学C++](lang/cpp/初学C++.md)
 - [C++核心编程](lang/cpp/C++核心编程.md)
 - [C++提高编程](lang/cpp/C++提高编程.md)
-
 
 ### Java
 
@@ -23,21 +20,27 @@
 	- [Spring Cloud](lang/Java/spring/spring-cloud/README.md)
 
 
+## 数据结构与算法
 
-## 数据结构
+### 数据结构
 
-### 布隆过滤器
-- cpp代码实现：[bloom-filter](https://github.com/hyperv0id/bloom-filter)
-- [Bloom Filter](data-structure/bloom-filter/Bloom%20Filter.md)
-- 布隆过滤器其他变体
-	- [A Shifting Bloom Filter Framework for Set Queries](data-structure/bloom-filter/ShiftingBF/A%20Shifting%20Bloom%20Filter%20Framework%20for%20Set%20Queries.md)
-	- [Spatial Bloom Filters](data-structure/bloom-filter/Spatial%20Bloom%20Filters.md)
 
-### 其他
-- [LRU缓存](data-structure/LRU缓存.md)
+#### stanford-cs166
+Data Structures（数据结构）
+网站：[CS166: Data Structures](http://web.stanford.edu/class/archive/cs/cs166/cs166.1226/)
+笔记地址：[cs166](data-structure/stanford-cs166/README.md)
 
-## 算法
+### 算法
 
+#### 专题
+
+#### stanford-cs161
+Desgin and Analysis of Algorithms（算法设计和分析）
+网站：[CS 161 | Design and Analysis of Algorithms (stanford-cs161.github.io)](https://stanford-cs161.github.io/summer2022/)
+
+笔记地址：[Stanford CS161](algo/stanford-cs161/README.md)
+
+#### 刷题
 - [LeetCode刷题LeetCode 101](algo/leetcode/LeetCode%20101.md)
 - [AcWing](algo/acwing/README.md)
 
@@ -59,11 +62,9 @@
 
 
 ## 设计模式
-
-- [README](design-pattern/README.md#设计原则)
-	- [单一原则](design-pattern/单一原则.md)
-	- [开闭原则OCP](design-pattern/开闭原则OCP.md)
-- [README](design-pattern/README.md#常见设计模式)
+![进度](https://progress-bar.dev/5/?scale=28&suffix=/28)
+- [设计原则](design-pattern/README.md#设计原则)
+- [常见设计模式](design-pattern/README.md#常见设计模式)
 
 
 
@@ -75,8 +76,8 @@
 - [Task06-卷积神经网络](ai/LeeML/Task06-卷积神经网络.md)
 
 ### 周志华西瓜书浅读
-![进度](https://progress-bar.dev/37)
 
+![进度](https://progress-bar.dev/6/?scale=16&suffix=/16)
 - [3-线性模型](ai/watermelon/3-线性模型.md)
 - [4-决策树](ai/watermelon/4-决策树.md)
 - [5-神经网络](ai/watermelon/5-神经网络.md)
@@ -94,3 +95,8 @@
 
 
 ## 工具
+
+### vim
+
+- [vim学习](tools/vim/什么是vim.md)
+- 
