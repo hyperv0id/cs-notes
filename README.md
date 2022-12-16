@@ -97,6 +97,6 @@ Desgin and Analysis of Algorithms（算法设计和分析）
 ## 工具
 
 ### vim
-
 - [vim学习](tools/vim/什么是vim.md)
-- 
+- [vim配置](tools/vim/vim配置.md)
+- [neovim配置](tools/vim/neovim配置.md)
