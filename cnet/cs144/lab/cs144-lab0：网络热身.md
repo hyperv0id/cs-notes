@@ -33,12 +33,20 @@ telnet cs144.keithw.org http
 显示成这样就表示连接成功，不过我们还得配置请求头：
 
 ```
-GET /hello HTTP/1.1 Host: cs144.keithw.org Connection: close
+GET /hello HTTP/1.1
+Host: cs144.keithw.org
+Connection: close
 ```
 
 回车两次，会出现下列内容，如果超时了再试一次
 
 ![img](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/2022/11/15/asynccode-1731d0)
+
+如果手速过慢会失败，这时可以将header保存为文件，[使用管道传输给telnet](https://stackoverflow.com/questions/2639419/how-to-feed-a-file-to-telnet)
+
+````shell
+cat lab0_2.1.in - | telnet cs144.keithw.org http # 从 lab0_2.1.in 文件中读取数据并自动输入到telnet
+````
 
 **作业**:
 
@@ -151,8 +159,8 @@ void get_URL(const string &host, const string &path) {
     // cerr << "Function called: get_URL(" << host << ", " << path << ").\n";
     // cerr << "Warning: get_URL() has not been implemented yet.\n";
 }
-./apps/webget cs144.keithw.org /hello 
-make check_webget
+// ./apps/webget cs144.keithw.org /hello 
+// make check_webget
 ```
 
 ![img](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/2022/11/15/asynccode-261b7c)
