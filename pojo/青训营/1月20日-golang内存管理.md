@@ -2,7 +2,12 @@
 
 [TOC]
 
-课件：[‌⁤⁢⁤‍﻿⁢⁤⁡⁢⁤‍⁤⁢‌⁢﻿⁤‌⁡﻿﻿⁢⁡⁣‌⁣⁣⁡⁤⁢⁢﻿⁤⁣⁣﻿⁣﻿‍⁢‍‍‍高性能 Go 语言发行版优化与落地实践 .pptx - 飞书云文档 (feishu.cn)](https://bytedance.feishu.cn/file/boxcngF8NWGNFuXUkdyQViZq6vd)
+- 课件：[‌⁤⁢⁤‍﻿⁢⁤⁡⁢⁤‍⁤⁢‌⁢﻿⁤‌⁡﻿﻿⁢⁡⁣‌⁣⁣⁡⁤⁢⁢﻿⁤⁣⁣﻿⁣﻿‍⁢‍‍‍高性能 Go 语言发行版优化与落地实践 .pptx - 飞书云文档 (feishu.cn)](https://bytedance.feishu.cn/file/boxcngF8NWGNFuXUkdyQViZq6vd)
+- 🎶手册：
+[【后端专场 学习资料二】第五届字节跳动青训营 - 掘金](https://juejin.cn/post/7189525739836801085/)
+- 📚 观看链接： 
+	- [Go 语言内存管理详解（1)](https://juejin.cn/course/bytetech/7140987981803814919/section/7142749780140097550)
+	- [Go 语言内存管理详解（2)](https://juejin.cn/course/bytetech/7140987981803814919/section/7142746789945278500)
 
 ## 0 - 概述
 
@@ -195,7 +200,7 @@ Golang的缓存机制借鉴了 `TCMalloc` 技术。
 - 每个`g`绑定一块大内存(1KB)，称作`goroutine allocation buffer(GAB)`
 - GAB用于`noscan`的小内存分配
 - 使用三个指针维护GAB：base，end，top<img src="https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/images/2023/01/20/20230120131854-e16dbc.png" style="zoom: 50%;" /> 
-  - 如果要分配8B的内存，之间将top指针向后移动就行：<img src="https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/images/2023/01/20/20230120132122-4be2c7.png" style="zoom: 33%;" />
+  - 如果要分配`8B`的内存，之间将top指针向后移动就行：<img src="https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/images/2023/01/20/20230120132122-4be2c7.png" style="zoom: 33%;" />
 
 
 
@@ -266,12 +271,17 @@ Golang的缓存机制借鉴了 `TCMalloc` 技术。
 
 ### 3.3 - 过程内和过程间分析
 
-过程内：仅在函数内部分析
+过程内分析(Intro-procedural analysis)：仅在函数内部分析
 
-过程间：考虑函数调用时参数传递和返回值的数据流和控制流
+过程间分析(Inter-procedural analysis)：考虑函数调用时参数传递和返回值的数据流和控制流
 
 
 
+过程间分析难点：
+- 需要数据流分析才能知道变量的类型
+- 根据类型的不同，产生了不同的数据流和控制流
+- 联合求解比较复杂
+![](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/images/2023/02/26/20230226122444-979fc4.png)
 
 
 
@@ -282,31 +292,72 @@ Golang的缓存机制借鉴了 `TCMalloc` 技术。
 
 ## 4 - Go编译器优化
 
+- WHY：
+	- 用户无感知，直接重新编译就可以提升效率
+	- 通用性
+- 思路
+	- **编译时间换取更高效的机器码**
+- BeastMode
+	- **函数内联**
+	- **逃逸分析**
+	- 默认栈大小调整
+	- 边界检查消除
+	- 循环展开
+	- ...
+
+### 4.1-函数内联
+
+- 内联：被调用函数的函数体(callee)的副本替换到调用位置(caller)上，同时重写代码以反映参数的绑定
+- 优点：
+	- 消除函数调用的开销：传递参数，保持寄存器
+	- 将过程间分析转化为过程内分析，帮助优化
+- 缺点
+	- 函数体变大，instruction 擦车不友好
+	- 编译的go镜像变大了（10%左右）
+	- 编译时间变大
+
+benchmark
+
+![](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/images/2023/02/26/20230226123611-7afa87.png)
+
+![](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/images/2023/02/26/20230226123627-f13f31.png)
+
+### 4.2-beast mode
+- golang函数内联限制较多
+	- interface、defer等等
+	- 本身自带的内联策略比较保守
+- beast mode：调整内联策略，使得更多函数被内联
+	- 降低函数开销
+	- 增加其他优化机会：**逃逸分析**
+
+
+### 4.2-逃逸分析
+
+分析指针的动态作用域，指针在何处何以被访问
+
+大致思路：
+
+- 从对象分配出发，沿着数据流观察控制流
+
+- 若发现指针p在当前作用域S:
+
+  - 作为参数传递给其他函数
+  - 传递给全局变量
+
+  - 传递给其他的goroutine
+
+  - 传递给已逃逸的指针指向的对像
+
+- 则指针p指向的对象逃逸出S,反之则没有逃逸出s
 
 
 
+优化：
+
+- 未逃逸出去的在栈上分配
 
 
 
+#### 性能收益
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![image-20230226125038677](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/images/2023/02/26/image-20230226125038677-0e365a.png)

@@ -86,16 +86,189 @@ $ ./grade-lab-util sleep
 2. 子进程应该输出：`<pid>: received ping`"，其中`<pid>`是它的进程号，把这个字节写在管道上给父进程，然后退出
 3. 父进程应该从子进程读取字节，打印`<pid>: received pong`，然后退出。
 
+```c
+#include "kernel/types.h"
+#include "kernel/stat.h"
+#include "user/user.h"
 
+int main(int argc, char* argv[]){
+    // 0用于读，1用于写
+    int p2c[2], c2p[2]; // 两个管道
+    pipe(p2c); // 父进程 -> 子进程 的管道
+    pipe(c2p); // 子进程 -> 父进程 的管道
+
+    if(fork() != 0){
+        // I'm Parent
+        write(p2c[1], "!", 1); // send to child
+        char buf;
+        read(c2p[0], &buf, 1); // read from child  
+        printf("%d: received pong!\n", getpid());
+        wait(0);
+    }
+    else{
+        // I'm Child
+        char buf;
+        read(p2c[0], &buf, 1); // read from parent  
+        printf("%d: received ping!\n", getpid());
+        write(c2p[1], "!", 1); // send to child 
+    }
+    exit(0);
+}
+```
 
 
 
 ## primes（中难）
 
+使用管道实现求质数，看不懂要干啥的看这里：[Bell Labs and CSP Threads](https://swtch.com/~rsc/thread/)
+![Uploading file...99mo8]()
 
 
+基本原理还是[埃式筛](https://oi-wiki.org/math/number-theory/sieve/#%E5%9F%83%E6%8B%89%E6%89%98%E6%96%AF%E7%89%B9%E5%B0%BC%E7%AD%9B%E6%B3%95)，直接原来是开一个数组存bool，现在将开一个数组存子进程
+
+```c
+#include "kernel/types.h"
+#include "kernel/stat.h"
+#include "user/user.h"
+
+/**
+ * p = get a number from left neighbor
+ * print p
+ * loop:
+ *      n = get a number from left neighbor
+ *      if (p does not divide n)
+ *          send n to right neighbor
+ */
+void prime(int msg){
+    int n;
+    // no message
+    if(read(msg, &n, 4) == 0)exit(0);
+    printf("%d is prime\n", n);
+
+    int pip[2]; // pipe
+    pipe(pip);
+    
+    int pid = fork();
+    
+    // create a child process and send message to the child,
+    // like what we do in main() function
+    if (pid != 0)
+    {
+        close(pip[0]);
+        // i'm parent
+        int next_num = -1;
+        // get all the number from left neighbor
+        while (read(msg, &next_num, 4) != 0)
+        {
+            if (next_num % n != 0)
+            {
+                write(pip[1], &next_num, 4);// send it to the right
+            }
+        }
+        close(pip[1]);
+        wait(0);
+    }
+    else
+    {
+        // i'm child
+        close(pip[1]);
+        prime(pip[0]);
+        close(pip[0]);
+    }
+}
+
+int main(int argc, char* argv[]){
+    int pip[2]; // pipe
+    pipe(pip);
+
+    int pid = fork();
+    if(pid != 0){
+        // root
+        close(pip[0]); // do not read
+        for (int i = 2; i <= 35; i++)
+        {
+            write(pip[1], &i, 4); // send message to childs
+        }
+        close(pip[1]);// write done
+        wait(0);
+
+    }else{
+        // first child
+        close(pip[1]); // i won't write
+        prime(pip[0]); // read
+        close(pip[0]); //read done
+
+    }
+    exit(0);
+}
+```
+
+这里的`main`方法和`prime`几乎是等价的
+
+可以先改变一下题目要求：
+
+> main 函数生成 2-35 之间的数字，将其发送给子进程，让其输出
+
+```c
+#include "kernel/types.h"
+#include "kernel/stat.h"
+#include "user/user.h"
+
+void prime(int msg)
+{
+    int n;
+    while ((read(msg, &n, 4) != 0))
+    {
+        printf("%d is prime\n", n);
+    }
+}
+
+int main(int argc, char* argv[]){
+    int pip[2]; // pipe
+    pipe(pip);
+
+    int pid = fork();
+    if(pid != 0){
+        // root
+        close(pip[0]); // do not read
+        for (int i = 2; i <= 35; i++)
+        {
+            write(pip[1], &i, 4); // send message to childs
+        }
+        close(pip[1]);// write done
+        wait(0);
+
+    }else{
+        // first child
+        close(pip[1]); // i won't write
+        prime(pip[0]); // read
+        close(pip[0]); //read done
+
+    }
+    exit(0);
+}
+
+```
 
 
+然后在改编一下，子进程会拿到第一个消息 n 后，只会输出与之不互质的
+
+```c
+void prime(int msg)
+{
+    int n;
+    if (read(msg, &n, 4) == 0)
+        exit(0);
+
+    while ((read(msg, &n, 4) != 0))
+    {
+        if (msg % n != 0)
+            printf("%d is prime\n", n);
+    }
+}
+```
+
+然后应该很容易想到如何送给子进程了
 
 
 ## find（中等）
