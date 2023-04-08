@@ -68,9 +68,6 @@
 将**视觉效果**和**逻辑效果**分离
 
 
-
-
-
 ```c#
     public static Player Instance { 
         get { return instanceField; }

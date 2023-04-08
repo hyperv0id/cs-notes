@@ -1,0 +1,13 @@
+{
+	"nodes":[
+		{"type":"group","id":"b1a85bbfd1dfd82d","x":-290,"y":-356,"width":440,"height":2640,"label":"Lec1"},
+		{"type":"file","file":"human-computer-interact/Lec2 - Human/Input And Output Channels.md","id":"4588edbe9fce7f64","x":503,"y":-106,"width":430,"height":495},
+		{"type":"file","file":"human-computer-interact/Lec1 - Intro/HCI Involves.md","id":"aa38117ebe411dec","x":-270,"y":-256,"width":400,"height":170},
+		{"type":"file","file":"human-computer-interact/Lec1 - Intro/Key Components of HCI.md","id":"fbce6b7cc964d774","x":-270,"y":-46,"width":400,"height":268},
+		{"type":"file","file":"human-computer-interact/Lec1 - Intro/UI.md","id":"49e87b7027fc6a69","x":-270,"y":262,"width":400,"height":209},
+		{"type":"file","file":"human-computer-interact/Lec1 - Intro/UX.md","id":"263656d92ed7f1a7","x":-270,"y":511,"width":400,"height":276},
+		{"type":"file","file":"human-computer-interact/Lec1 - Intro/What is HCI.md","id":"1fd0080c7dfc9f06","x":-270,"y":827,"width":400,"height":188},
+		{"type":"file","file":"human-computer-interact/Lec1 - Intro/Why HCI is important.md","id":"f3519cd5845f2d5c","x":-270,"y":1055,"width":400,"height":208}
+	],
+	"edges":[]
+}

@@ -226,7 +226,7 @@
     - [ ] [中央处理单元（视频）](https://youtu.be/FZGugFqdr60)
     - [ ] [指令和程序（视频）](https://youtu.be/zltgXvg6r3k)
 
-## 算法复杂度 / Big-O / 渐进分析法
+### 算法复杂度 / Big-O / 渐进分析法
 
 - 并不需要实现
 - 这里有很多视频，看到你真正了解它为止。你随时可以回来复习。
@@ -249,9 +249,9 @@
     - [计算性复杂度：第二部](https://www.topcoder.com/community/data-science/data-science-tutorials/computational-complexity-section-2/)
 - [ ] [速查表（Cheat sheet）](http://bigocheatsheet.com/)
 
-## 数据结构
+### 数据结构
 
-- ### 数组（Arrays）
+- #### 数组（Arrays）
     - 实现一个可自动调整大小的动态数组。
     - [ ] 介绍：
         - [数组（视频）](https://www.coursera.org/learn/data-structures/lecture/OsBSF/arrays)
@@ -284,7 +284,7 @@
         - 因为在内存中分配的空间邻近，所以有助于提高性能
         - 空间需求 = （大于或等于 n 的数组容积）* 元素的大小。即便空间需求为 2n，其空间复杂度仍然是 O(n)
 
-- ### 链表（Linked Lists）
+- #### 链表（Linked Lists）
     - [ ] 介绍：
         - [ ] [单向链表（视频）](https://www.coursera.org/learn/data-structures/lecture/kHhgK/singly-linked-lists)
         - [ ] [CS 61B —— 链表（一）（视频）](https://archive.org/details/ucberkeley_webcast_htzJdKoEmO0)
@@ -315,11 +315,11 @@
         - [介绍（视频）](https://www.coursera.org/learn/data-structures/lecture/jpGKD/doubly-linked-lists)
         - 并不需要实现
 
-- ### 堆栈（Stack）
+- #### 堆栈（Stack）
     - [ ] [堆栈（视频）](https://www.coursera.org/learn/data-structures/lecture/UdKzQ/stacks)
     - [ ] 可以不实现，因为使用数组来实现并不重要
 
-- ### 队列（Queue）
+- #### 队列（Queue）
     - [ ] [队列（视频）](https://www.coursera.org/learn/data-structures/lecture/EShpq/queue)
     - [ ] [原型队列/先进先出（FIFO）](https://en.wikipedia.org/wiki/Circular_buffer)
     - [ ] 使用含有尾部指针的链表来实现:
@@ -337,7 +337,7 @@
         - dequeue：O(1)（链表和数组）
         - empty：O(1)（链表和数组）
 
-- ### 哈希表（Hash table）
+- #### 哈希表（Hash table）
     - [ ] 视频：
         - [ ] [链式哈希表（视频）](https://www.youtube.com/watch?v=0M_kIqhwbFo&list=PLUl4u3cNGP61Oq3tWYp6V_F-5jb5L2iHb&index=8)
         - [ ] [Table Doubling 和 Karp-Rabin（视频）](https://www.youtube.com/watch?v=BRO7mVIFt08&index=9&list=PLUl4u3cNGP61Oq3tWYp6V_F-5jb5L2iHb)
@@ -361,9 +361,9 @@
         - get(key)
         - remove(key)
 
-## 更多的知识
+### 更多的知识
 
-- ### 二分查找（Binary search）
+- #### 二分查找（Binary search）
     - [ ] [二分查找（视频）](https://www.youtube.com/watch?v=D5SrAga1pno)
     - [ ] [二分查找（视频）](https://www.khanacademy.org/computing/computer-science/algorithms/binary-search/a/binary-search)
     - [ ] [详情](https://www.topcoder.com/community/data-science/data-science-tutorials/binary-search/)
@@ -398,9 +398,9 @@
     - [ ] 绝对值：
         - [绝对整型（Absolute Integer）](http://bits.stephan-brumme.com/absInteger.html)
 
-## 树（Trees）
+### 树（Trees）
 
-- ### 树 —— 笔记 & 背景
+- #### 树 —— 笔记 & 背景
     - [ ] [系列：树（视频）](https://www.coursera.org/learn/data-structures/lecture/95qda/trees)
     - 基本的树形结构
     - 遍历
@@ -421,7 +421,7 @@
             - 后序遍历（DFS：左、右、节点本身）
             - 先序遍历（DFS：节点本身、左、右）
 
-- ### 二叉查找树（Binary search trees）：BSTs
+- #### 二叉查找树（Binary search trees）：BSTs
     - [ ] [二叉查找树概览（视频）](https://www.youtube.com/watch?v=x6At0nzX92o&index=1&list=PLA5Lqm4uh9Bbq-E0ZnqTIa8LRaL77ica6)
     - [ ] [系列（视频）](https://www.coursera.org/learn/data-structures-optimizing-performance/lecture/p82sw/core-introduction-to-binary-search-trees)
         - 从符号表开始到 BST 程序
@@ -451,7 +451,7 @@
         - [ ] delete_value
         - [ ] get_successor // 返回给定值的后继者，若没有则返回-1
 
-- ### 堆（Heap） / 优先级队列（Priority Queue） / 二叉堆（Binary Heap）
+- #### 堆（Heap） / 优先级队列（Priority Queue） / 二叉堆（Binary Heap）
     - 可视化是一棵树，但通常是以线性的形式存储（数组、链表）
     - [ ] [堆](https://en.wikipedia.org/wiki/Heap_(data_structure))
     - [ ] [介绍（视频）](https://www.coursera.org/learn/data-structures/lecture/2OpTs/introduction)
@@ -479,7 +479,7 @@
         - [ ] heapify —— 构建堆，用于堆排序
         - [ ] heap_sort() —— 拿到一个未排序的数组，然后使用大顶堆或者小顶堆进行就地排序
 
-## 排序（Sorting）
+### 排序（Sorting）
 
 - [ ] 笔记:
     - 实现各种排序，知道每种排序的最坏、最好和平均的复杂度分别是什么场景:
@@ -544,7 +544,7 @@
 
 总结一下，这是[15种排序算法](https://www.youtube.com/watch?v=kPRA0W1kECg)的可视化表示。如果你需要有关此主题的更多详细信息，请参阅“[一些主题的额外内容](#一些主题的额外内容)”中的“排序”部分。
 
-## 图（Graphs）
+### 图（Graphs）
 
 图论能解决计算机科学里的很多问题，所以这一节会比较长，像树和排序的部分一样。
 
