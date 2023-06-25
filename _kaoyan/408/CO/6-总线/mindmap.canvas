@@ -1,0 +1,19 @@
+{
+	"nodes":[
+		{"type":"text","text":"总线","id":"dab697b8bb08c61b","x":-1320,"y":-140,"width":250,"height":60},
+		{"type":"text","text":"[3-总线标准](3-总线标准.md)","id":"1e053f7b779bc074","x":-840,"y":-80,"width":125,"height":60},
+		{"type":"text","text":"[仲裁](2-总线仲裁.md)","id":"8844dbc3b23e81b4","x":-840,"y":-200,"width":125,"height":60},
+		{"type":"text","text":"[4-操作和定时](4-操作和定时.md)","id":"5cd9ba5f7cbc2716","x":-840,"y":40,"width":125,"height":60},
+		{"type":"text","text":"[概述](1-总线概述.md)","id":"8ee40c9c05d9ed00","x":-840,"y":-320,"width":125,"height":60},
+		{"type":"file","file":"CO/6-总线/1-总线概述.md","subpath":"#概述","id":"fa61006e3de232c4","x":-520,"y":-670,"width":400,"height":200},
+		{"type":"file","file":"CO/6-总线/1-总线概述.md","subpath":"#性能指标","id":"c523e898000235c3","x":-520,"y":-420,"width":400,"height":100}
+	],
+	"edges":[
+		{"id":"6a4efe6797591c36","fromNode":"8ee40c9c05d9ed00","fromSide":"right","toNode":"fa61006e3de232c4","toSide":"left"},
+		{"id":"f4d31036fbcb5a87","fromNode":"8ee40c9c05d9ed00","fromSide":"right","toNode":"c523e898000235c3","toSide":"left"},
+		{"id":"65c160b44003c494","fromNode":"dab697b8bb08c61b","fromSide":"right","toNode":"8844dbc3b23e81b4","toSide":"left"},
+		{"id":"446f97f39116cfed","fromNode":"dab697b8bb08c61b","fromSide":"right","toNode":"5cd9ba5f7cbc2716","toSide":"left"},
+		{"id":"db5b9a52dd116c4a","fromNode":"dab697b8bb08c61b","fromSide":"right","toNode":"1e053f7b779bc074","toSide":"left"},
+		{"id":"317dfc3b93cf2567","fromNode":"dab697b8bb08c61b","fromSide":"right","toNode":"8ee40c9c05d9ed00","toSide":"left"}
+	]
+}
