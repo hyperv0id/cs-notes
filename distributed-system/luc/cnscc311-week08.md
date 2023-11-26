@@ -60,7 +60,7 @@
 
 FROM：https://github.com/Jinnrry/Jencryption
 
-加密前: ![](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/2023/11/26/20231126155019-5a70e3.png)加密后: ![](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/2023/11/26/20231126155048-c781d7.png)
+加密前: ![](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/2023/11/26/20231126155019-5a70e3.png) 加密后: ![](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/2023/11/26/20231126155048-c781d7.png)
 
 
 
