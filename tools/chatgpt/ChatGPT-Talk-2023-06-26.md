@@ -1,6 +1,9 @@
 ---
-Model: Turbo
+tags:
+  - ai
+AIModel: Turbo
 ---
+
 
 ## 量子力学
 

@@ -1,5 +1,8 @@
 ---
-tags: ["#spring #spring/spring-cloud']
+tags:
+  - spring/spring-cloud
+  - spring
+Category: spring-cloud
 ---
 
 
