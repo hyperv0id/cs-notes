@@ -20,7 +20,7 @@
 
 ![image-20231126154124549](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/2023/11/26/image-20231126154124549-536f12.png)
 
-### Replay attack(重放攻击)
+### Replay attack [重放攻击](../../../wiki/重放攻击.md)
 
 攻击者发送一个目的主机已接收过的包，来达到欺骗系统的目的，主要用于身份认证过程，破坏认证的正确性。
 
