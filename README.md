@@ -5,19 +5,19 @@
 ## 语言
 
 ### 汇编
-- [汇编语言-基于x86处理器](lang/assembly/汇编语言-基于x86处理器.md)
-- [汇编语言-基于x86处理器-练习](lang/assembly/汇编语言-基于x86处理器-练习.md)
+- [汇编语言-基于x86处理器](base/lang/assembly/汇编语言-基于x86处理器.md)
+- [汇编语言-基于x86处理器-练习](base/lang/assembly/汇编语言-基于x86处理器-练习.md)
 
 ## cpp
-- [C++核心编程](lang/cpp/C++核心编程.md)
-- [C++提高编程](lang/cpp/C++提高编程.md)
+- [C++核心编程](base/lang/cpp/C++核心编程.md)
+- [C++提高编程](base/lang/cpp/C++提高编程.md)
 
 ### Java
 
-- [Java Web](lang/Java/Java%20Web.md)
-- [Spring](lang/Java/spring/Spring.md)
-	- [Spring MVC](lang/Java/spring/SpringMVC.md)
-	- [Spring Cloud](lang/Java/spring/spring-cloud/README.md)
+- [Java Web](base/lang/Java/Java%20Web.md)
+- [Spring](base/lang/Java/spring/Spring.md)
+	- [Spring MVC](base/lang/Java/spring/SpringMVC.md)
+	- [Spring Cloud](base/lang/Java/spring/spring-cloud/README.md)
 
 
 ## 数据结构与算法
@@ -49,9 +49,9 @@ Desgin and Analysis of Algorithms（算法设计和分析）
 
 ## 计算机网络
 
-- [哈工大计算机网络笔记](cnet/哈工大/README.md)
-- [斯坦福cs144](cnet/cs144/cs144%20Introdiction.md)
-	- [lab实现](cnet/cs144/cs144%20Introdiction.md#Lab实现)
+- [哈工大计算机网络笔记](base/cnet/哈工大/README.md)
+- [斯坦福cs144](base/cnet/cs144/cs144%20Introdiction.md)
+	- [lab实现](base/cnet/cs144/cs144%20Introdiction.md#Lab实现)
 
 
 ## 操作系统
@@ -63,8 +63,8 @@ Desgin and Analysis of Algorithms（算法设计和分析）
 
 ## 设计模式
 ![进度](https://progress-bar.dev/5/?scale=28&suffix=/28)
-- [设计原则](design-pattern/README.md#设计原则)
-- [常见设计模式](design-pattern/README.md#常见设计模式)
+- [设计原则](base/design-pattern/README.md#设计原则)
+- [常见设计模式](base/design-pattern/README.md#常见设计模式)
 
 
 
