@@ -1,5 +1,9 @@
 ---
 aliases: [OCP, 开闭原则]
+tags:
+  - design-pattern
+Category: design-pattern
+created: 2023-03-16T00:43:34 (UTC +08:00)
 ---
 > 对扩展开放，对修改关闭。
 
