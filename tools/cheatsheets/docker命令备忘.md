@@ -1,10 +1,11 @@
-[](https://github.com/TonyCrane/note/tree/master/docs/cs/tools/docker.md "编辑此页")
+---
+tags:
+  - cheatsheet
+created: 2023-03-16T00:43:34 (UTC +08:00)
+---
 
-约 464 个字 16 行代码 预计阅读时间 2 分钟
-
-Abstract
-
-一些常用 / 常忘的 docker 命令、Dockerfile 等
+> [!abstract]
+>  一些常用 / 常忘的 docker 命令、Dockerfile 等
 
 ## 安装
 
@@ -110,8 +111,3 @@ RUN sed -i s/deb.debian.org/mirrors.aliyun.com/g /etc/apt/sources.list && \
 RUN apt-get update
 
 ```
-
-___
-
-最后更新: 2022年11月7日 23:22:41  
-创建日期: 2022年1月6日 00:26:43

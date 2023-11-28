@@ -1,4 +1,8 @@
-
+---
+tags:
+  - cheatsheet
+created: 2023-03-16T00:43:34 (UTC +08:00)
+---
 
 > [!abstract]
 > gdb 相关的一些指令备忘、插件安装方式等
