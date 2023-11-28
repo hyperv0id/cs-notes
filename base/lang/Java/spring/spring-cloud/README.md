@@ -1,7 +1,10 @@
 ---
-Category: #spring/spring-cloud  
-tags: ["#spring #spring/spring-cloud"]
-Parent: [[Spring]]
+Category: java
+tags:
+  - "#spring"
+  - "#spring/spring-cloud"
+Parent:
+  - - Spring
 ---
 
 - [1-微服务简介](1-微服务简介.md)
