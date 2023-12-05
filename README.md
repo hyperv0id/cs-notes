@@ -63,8 +63,8 @@ Desgin and Analysis of Algorithms（算法设计和分析）
 
 ## 设计模式
 ![进度](https://progress-bar.dev/5/?scale=28&suffix=/28)
-- [设计原则](base/design-pattern/设计模式与设计原则.md#设计原则)
-- [常见设计模式](base/design-pattern/设计模式与设计原则.md#常见设计模式)
+- [设计原则](base/design-pattern/README.md#设计原则)
+- [常见设计模式](base/design-pattern/README.md#常见设计模式)
 
 
 
