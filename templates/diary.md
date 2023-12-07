@@ -5,10 +5,7 @@ Week: [[CW {{date:YYYY}}-{{date:WW}}]]
 ---  
   
 ## Habits  
-- Daily  
-- [ ] …  
-- Weekly  
-- [ ] …  
+
   
 Screen time: … hours  
 Mood: …/5  
