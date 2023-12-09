@@ -24,11 +24,11 @@ created: 2023-03-16T00:43:34 (UTC +08:00)
 
 ### 断点
 
-- `(gdb) break main` 断在符号处 (b)
+- `(gdb) break main` 断在符号处 `(b)`
 - `(gdb) break *0x....` 断在地址
-- `(gdb) info breakpoints` 查看断点及状态 (i b)
-- `(gdb) delete / clear` 清除所有断点 (d/cl)
-- `(gdb) delete <breakpoint#>` 删除某一断点（从 i b 得来断点号）
+- `(gdb) info breakpoints` 查看断点及状态 `(i b)`
+- `(gdb) delete / clear` 清除所有断点 `(d/cl)`
+- `(gdb) delete <breakpoint#>` 删除某一断点（从 `i b` 得来断点号）
 - `(gdb) clear ...` 清除某一符号、地址处的断点
 - `(gdb) disable <breakpoint#>` 禁用某一断点
 - `(gdb) enable <breakpoint#>` 启用某一断点
@@ -38,7 +38,7 @@ created: 2023-03-16T00:43:34 (UTC +08:00)
 
 ### 调用栈
 
-- `(gdb) backtrace` 查看调用栈 (bt)
+- `(gdb) backtrace` 查看调用栈 `(bt)`
 - `(gdb) frame` 查看当前帧栈
 - `(gdb) up/down` 移动当前帧栈（向 main / 远离 main）
 - `(gdb) info locals` 查看当前帧栈变量
@@ -79,7 +79,10 @@ created: 2023-03-16T00:43:34 (UTC +08:00)
 ### gdb-peda
 
 每条指令带寄存器、汇编、内存数据回显
+```sh
+$ git clone https://github.com/longld/peda.git ~/peda
+$ echo "source ~/peda/peda.py" >> ~/.gdbinit
+```
 
-`[](https://note.tonycrane.cc/cs/tools/gdb/#__codelineno-0-1)$ git clone https://github.com/longld/peda.git ~/peda [](https://note.tonycrane.cc/cs/tools/gdb/#__codelineno-0-2)$ echo "source ~/peda/peda.py" >> ~/.gdbinit`
 
 
