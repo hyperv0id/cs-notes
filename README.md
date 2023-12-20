@@ -50,8 +50,8 @@ Desgin and Analysis of Algorithms（算法设计和分析）
 ## 计算机网络
 
 - [哈工大计算机网络笔记](base/cnet/哈工大/README.md)
-- [斯坦福cs144](base/cnet/cs144/cs144%20Introdiction.md)
-	- [lab实现](base/cnet/cs144/cs144%20Introdiction.md#Lab实现)
+- [斯坦福cs144](pojo/cs144%201/cs144%20Introdiction.md)
+	- [lab实现](pojo/cs144%201/cs144%20Introdiction.md#Lab实现)
 
 
 ## 操作系统
