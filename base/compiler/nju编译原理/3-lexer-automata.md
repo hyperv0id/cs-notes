@@ -22,7 +22,7 @@
 - 从[正则表达式](../正则表达式.md)到[NFA](../NFA.md)这一步我们使用[Thompson构造法](../Thompson构造法.md)
 - 从[NFA](../NFA.md)转换到[DFA](../DFA.md)：[子集构造法](../子集构造法.md)
 - [DFA最小化](../DFA最小化.md)：合并等价状态
-- [DFA](../DFA.md)回到[正则表达式](../正则表达式.md)：[Kllene构造法](../Kllene构造法.md)
+- [DFA](../DFA.md)回到[正则表达式](../正则表达式.md)：[Kleene构造法](../Kleene构造法.md)
 
 ## 词法分析器生成器
 

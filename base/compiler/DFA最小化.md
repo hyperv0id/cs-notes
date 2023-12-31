@@ -59,20 +59,22 @@ $$\Pi=\{F,S\setminus F\}$$
 伪代码：
 ![image.png](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/2023/12/30/20231230164934-10d441.png)
 
-
-## 缺点
+## 性质
+### 缺点
 
 只有[DFA](DFA.md)才能进行DFA最小化算法，有些省略的边必须补上
 
-## 复杂度
+### 复杂度
 
 #todo 
 
 
-## 准确性分析
+### 准确性分析
 #todo 
 
 
-## 最小化后唯一的吗
+### 最小化后唯一的吗
 
 #todo 
+
+
