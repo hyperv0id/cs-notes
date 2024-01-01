@@ -8,7 +8,7 @@
 - 配置文件：yaml、properties、xml、toml
 - 数据分析：csv/excel
 - web领域：json文件
-- 数据库领域：[SQL](../../../system/information-system/02-SQL.md)引擎
+- 数据库领域：[SQL](../../../../system/information-system/02-SQL.md)引擎
 - 分布式：TLA+（用于分析分布式协议的语言）eg：[PaxosStore-tla/specification/TPaxos.tla at master · Starydark/PaxosStore-tla · GitHub](https://github.com/Starydark/PaxosStore-tla/blob/master/specification/TPaxos.tla)
 - Java字节码解释器：javac
 - C/CPP编译器：gcc、llvm

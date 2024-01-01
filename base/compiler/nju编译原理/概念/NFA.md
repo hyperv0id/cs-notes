@@ -1,4 +1,19 @@
+---
+aliases:
+  - 非确定性有限状态机
+  - Nondeterministic Finite State Machine
+  - Nondeterministic FSM
+  - NFSM
+---
+
 # NFA
+
+## 简介
+
+
+Nondeterministic Finite State Machine（Nondeterministic FSM）是一种[有限状态机](FSM.md)（[Finite State Machine](FSM.md)，FSM）的变体，它在状态转换时允许多个可能的选择，而不是[确定性有限状态机](DFA.md)（Deterministic FSM）那样只允许一种确定的状态转换。
+
+在[确定性有限状态机](DFA.md)中，任何给定的输入符号和当前状态都会唯一确定下一个状态。但是，对于[非确定性有限状态机](NFA.md)，一个输入和当前状态可能导致多个可能的下一个状态，系统可以在这些状态中进行非确定性的选择。
 
 ## 定义
 NFA：非确定的有穷状态机，组成是一个五元组 $A = (\Sigma, S, s_0, \delta, F)$

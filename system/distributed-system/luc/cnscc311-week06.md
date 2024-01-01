@@ -43,7 +43,7 @@ RPC是一种高级请求-响应机制，支持分布式系统中程序过程的�
 
 ![image-20231126142455336](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/2023/11/26/image-20231126142455336-6de286.png)
 
-### RPC和中间件的关系
+### RPC和[中间件](../../../wiki/中间件.md)的关系
 
 ![image-20231126142630735](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/2023/11/26/image-20231126142630735-b69456.png)eg: XML-RPC, JSON-RPC, EJB, GlassFish
 
@@ -103,12 +103,12 @@ TODO
 
 ## [中间件](../../../wiki/中间件.md)
 
-是什么：中间件是一种计算机软件，它提供操作系统之外的服务，使分布式系统的组件能够通信和管理数据。
+是什么：[中间件](../../../wiki/中间件.md)是一种计算机软件，它提供操作系统之外的服务，使分布式系统的组件能够通信和管理数据。
 
 组成：
 
-- WEB中间件：Web服务器、应用服务器、内容管理系统等。例如Tomcat, Glassfish
-- 数据库中间件：ODBC(开放数据库连接)、JDBC 
+- WEB[中间件](../../../wiki/中间件.md)：Web服务器、应用服务器、内容管理系统等。例如Tomcat, Glassfish
+- 数据库[中间件](../../../wiki/中间件.md)：ODBC(开放数据库连接)、JDBC 
 
 
 

@@ -5,8 +5,7 @@ tags:
 aliases:
   - opanai-whisper
 ---
-
-## 语音转文字
+# 语音转文字
 
 - openai 仓库地址：[GitHub - openai/whisper: Robust Speech Recognition via Large-Scale Weak Supervision](https://github.com/openai/whisper)
 - 示例代码：[Colab Example](https://colab.research.google.com/github/openai/whisper/blob/master/notebooks/LibriSpeech.ipynb)
@@ -14,7 +13,7 @@ aliases:
 - 论文地址：[[2212.04356] Robust Speech Recognition via Large-Scale Weak Supervision](https://arxiv.org/abs/2212.04356)
 - 李沐老师whisper精度论文视频：[OpenAI Whisper 精读【论文精读·45】\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1VG4y1t74x/?spm_id_from=333.999.0.0)
 
-## 环境搭建
+# 环境搭建
 
 准备conda虚拟环境
 ```sh
@@ -55,10 +54,11 @@ scoop install ffmpeg
 ```
 
 
-## 开始使用
+# 开始使用
 
-### 命令行
+## 命令行
 
+这个命令会使用small模型将音频生成字幕，并同时生成包括`srt`，`json`，`txt`在内的多种文本文件
 ```sh
 $ whisper micro-machines.wav --model small
 100%|███████████████████████████████████████| 461M/461M [01:22<00:00, 5.86MiB/s]
@@ -76,7 +76,7 @@ Detected language: English
 [00:27.700 --> 00:29.700]  The smaller they are, the better they are.
 ```
 
-### python脚本
+## python脚本
 
 ```python
 import whisper
@@ -117,6 +117,6 @@ result = whisper.decode(model, mel, options)
 print(result.text)
 ```
 
-## 延伸应用
+# 延伸应用
 
 - [faster-whisper](faster-whisper.md)

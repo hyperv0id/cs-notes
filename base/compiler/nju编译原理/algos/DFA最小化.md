@@ -1,4 +1,4 @@
-![image.png](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/2023/12/30/20231230123246-2ccd85.png)
+![图灵奖得主](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/2023/12/30/20231230123246-2ccd85.png)
 
 
 ## 如何定义等价状态
@@ -62,7 +62,7 @@ $$\Pi=\{F,S\setminus F\}$$
 ## 性质
 ### 缺点
 
-只有[DFA](DFA.md)才能进行DFA最小化算法，有些省略的边必须补上
+只有[DFA](概念/DFA.md)才能进行DFA最小化算法，有些省略的边必须补上
 
 ### 复杂度
 

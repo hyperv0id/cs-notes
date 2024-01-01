@@ -1,74 +1,64 @@
 本项目为我的自学笔记，包括但不限于计算机基础、编程语言、数据结构与算法、以及项目笔记。
 数学公式采用 `latex` 语法，github上暂不能显示，请下载 [MathJax](https://chrome.google.com/webstore/detail/mathjax-plugin-for-github/ioemnmodlmafdkllaclgeombjnmnbima) 插件辅助，或者clone到支持的markdown编辑器内查看
 
-
-## 语言
-
-### 汇编
-- [汇编语言-基于x86处理器](base/lang/assembly/汇编语言-基于x86处理器.md)
-- [汇编语言-基于x86处理器-练习](base/lang/assembly/汇编语言-基于x86处理器-练习.md)
-
-## cpp
-- [C++核心编程](base/lang/cpp/C++核心编程.md)
-- [C++提高编程](base/lang/cpp/C++提高编程.md)
-
-### Java
-
-- [Java Web](base/lang/Java/Java%20Web.md)
-- [Spring](base/lang/Java/spring/Spring.md)
-	- [Spring MVC](base/lang/Java/spring/SpringMVC.md)
-	- [Spring Cloud](base/lang/Java/spring/spring-cloud/README.md)
-
-
-## 数据结构与算法
-
-### 数据结构
-
-
-#### stanford-cs166
-Data Structures（数据结构）
-网站：[CS166: Data Structures](http://web.stanford.edu/class/archive/cs/cs166/cs166.1226/)
-笔记地址：[cs166](pojo/stanford-cs166/README.md)
-
-### 算法
-
-#### 专题
-
-#### stanford-cs161
-Desgin and Analysis of Algorithms（算法设计和分析）
-网站：[CS 161 | Design and Analysis of Algorithms (stanford-cs161.github.io)](https://stanford-cs161.github.io/summer2022/)
-
-笔记地址：[Stanford CS161](pojo/stanford-cs161/README.md)
-
-#### 刷题
-- [LeetCode刷题LeetCode 101](algo/leetcode/LeetCode%20101.md)
-- [AcWing](algo/acwing/README.md)
-
-
 ## 计算机基础
 
-## 计算机网络
+### 数据结构与算法
+
+
+### 计算机网络
 
 - [哈工大计算机网络笔记](base/cnet/哈工大/README.md)
 - [斯坦福cs144](pojo/cs144%201/cs144%20Introdiction.md)
 	- [lab实现](pojo/cs144%201/cs144%20Introdiction.md#Lab实现)
 
+### 编译原理
 
-## 操作系统
+- [0-简介](base/compiler/nju编译原理/notes/0-intro.md)
+- 词法分析：
+	- [1-antlr自动生成词法分析器](base/compiler/nju编译原理/notes/1-lexer-antlr.md)
+	- [2-手写词法分析](base/compiler/nju编译原理/notes/2-lexer-handwrite.md)
+	- [3-词法分析自动化理论](base/compiler/nju编译原理/notes/3-lexer-automata.md)
+- 语法分析
+	- [4-antlr自动语法分析](base/compiler/nju编译原理/notes/4-parser-cfg-antlr.md)
+	- [5-ll分类](base/compiler/nju编译原理/notes/5-parser-ll.md)
+	- [6-语法分析allstar算法](base/compiler/nju编译原理/notes/6-parser-ll-allstar.md)
+	- [7-symbol-table](base/compiler/nju编译原理/notes/7-symbol-table.md)
+	- [8-type-system](base/compiler/nju编译原理/notes/8-type-system.md)
+- [9-sematics-ag](base/compiler/nju编译原理/notes/9-sematics-ag.md)
+- [10-llvm-ir](base/compiler/nju编译原理/notes/10-llvm-ir.md)
+- [11-ir-expr-control](base/compiler/nju编译原理/notes/11-ir-expr-control.md)
 
-
-## 数据库
-
-
-
-## 设计模式
+### 设计模式
 ![进度](https://progress-bar.dev/5/?scale=28&suffix=/28)
 - [设计原则](base/design-pattern/README.md#设计原则)
 - [常见设计模式](base/design-pattern/README.md#常见设计模式)
 
+### 语言
+
+#### 汇编
+- [汇编语言-基于x86处理器](base/lang/assembly/汇编语言-基于x86处理器.md)
+- [汇编语言-基于x86处理器-练习](base/lang/assembly/汇编语言-基于x86处理器-练习.md)
+
+#### cpp
+- [C++核心编程](base/lang/cpp/C++核心编程.md)
+- [C++提高编程](base/lang/cpp/C++提高编程.md)
+
+#### Java
+
+- [Java Web](base/lang/Java/Java%20Web.md)
+- [Spring](base/lang/Java/spring/Spring.md)
+	- [Spring MVC](base/lang/Java/spring/SpringMVC.md)
+	- [Spring Cloud](base/lang/Java/spring/spring-cloud/README.md)
+## 系统领域
+
+### 操作系统
 
 
-## 机器学习
+### 数据库
+
+
+## 机器学习&AI
 
 ### 李宏毅机器学习
 - [Task01](ai/LeeML/Task01.md)
@@ -96,7 +86,22 @@ Desgin and Analysis of Algorithms（算法设计和分析）
 
 ## 工具
 
-### vim
-- [vim学习](tools/vim/什么是vim.md)
-- [vim配置](tools/vim/vim配置.md)
-- [neovim配置](tools/vim/neovim配置.md)
+- 命令手册
+	- [docker命令备忘](tools/cheatsheets/docker命令备忘.md)
+	- [ffmpeg命令备忘](tools/cheatsheets/ffmpeg命令备忘.md)
+	- [gdb命令备忘](tools/cheatsheets/gdb命令备忘.md)
+	- [git 命令备忘](tools/cheatsheets/git%20命令备忘.md)
+	- [pacman包管理](tools/linux/pacman包管理.md)
+- vim：终端文本编辑器
+	- [vim学习](tools/vim/什么是vim.md)
+	- [vim配置](tools/vim/vim配置.md)
+	- [neovim配置](tools/vim/neovim配置.md)
+- git：项目管理工具
+	- [git & GitHub 使用](tools/git/git%20&%20GitHub%20使用.md)
+	- [Git 代理](tools/git/Git%20代理.md)
+	- [git 中文支持](tools/git/git%20中文支持.md)
+- [CMake](tools/CMake.md)：c/cpp项目管理根据
+- [qemu](tools/qemu.md)：通用开源模拟器和虚拟器
+- [valgrind](tools/valgrind.md)：内存泄漏检查
+- [Objdump](tools/linux/Objdump命令.md)：查看机器码对应的汇编代码
+- 

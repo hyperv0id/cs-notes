@@ -14,8 +14,8 @@ $$
 也就是
 1. i到j所有节点都$\leq k-1$
 2. i到k所有节点都$\leq k-1$ 再加上 k到j 所有节点都$\leq k-1$
-	1. 在DFA转换成正则表达式中，还要考虑一下可能有多个k节点的情况
-	2. 这里使用[Kleene闭包](../compiler/Kleene闭包.md)
+	1. 在[DFA](../compiler/nju编译原理/概念/DFA.md)转换成[正则表达式](../compiler/nju编译原理/概念/正则表达式.md)中，还要考虑一下可能有多个k节点的情况
+	2. 这里使用[Kleene闭包](../compiler/nju编译原理/algos/Kleene闭包.md)
 
 
 
