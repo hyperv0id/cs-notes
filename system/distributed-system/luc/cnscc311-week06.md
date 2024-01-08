@@ -53,7 +53,7 @@ TODO
 
 
 
-### RPC架构
+### [RPC](../../../dev/backend/RPC.md)架构
 
 ![image-20231126143001073](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/2023/11/26/image-20231126143001073-f8ba28.png)
 
@@ -118,7 +118,7 @@ TODO
 
 
 
-## REST和SOAP
+## [REST](../../../dev/backend/RESTful.md)和[SOAP](../../../dev/backend/SOAP.md)
 
 ### SOAP (Simple Object Access Protocol)
 

@@ -1,12 +1,12 @@
 # Security and Cryptography
 
+<iframe src="https://onedrive.live.com/embed?resid=C5FEA982BBD2F6E%21263963&amp;authkey=%21ACA9aPVQ4-tbCCA&amp;em=2" width="714px" height="432px" frameborder="0"></iframe>
+
 ## 分布式系统的安全问题
 
 ### Eavesdropping(窃听)
 
 ![image-20231126153920774](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/2023/11/26/image-20231126153920774-f8787f.png)
-
-
 
 ### Masquerading(冒充)
 
@@ -70,4 +70,4 @@ FROM：https://github.com/Jinnrry/Jencryption
 
 
 
-## 进行安全管理。
+## 进行安全管理

@@ -28,7 +28,7 @@
 #### stanford-cs166
 Data Structures（数据结构）
 网站：[CS166: Data Structures](http://web.stanford.edu/class/archive/cs/cs166/cs166.1226/)
-笔记地址：[cs166](../../stanford-cs166/README.md)
+笔记地址：[cs166](../../cs166/README.md)
 
 ### 算法
 
@@ -38,7 +38,7 @@ Data Structures（数据结构）
 Desgin and Analysis of Algorithms（算法设计和分析）
 网站：[CS 161 | Design and Analysis of Algorithms (stanford-cs161.github.io)](https://stanford-cs161.github.io/summer2022/)
 
-笔记地址：[Stanford CS161](../../stanford-cs161/README.md)
+笔记地址：[Stanford CS161](../../cs161/README.md)
 
 #### 刷题
 - [LeetCode刷题LeetCode 101](algo/leetcode/LeetCode%20101.md)
@@ -50,8 +50,8 @@ Desgin and Analysis of Algorithms（算法设计和分析）
 ## 计算机网络
 
 - [哈工大计算机网络笔记](../../../base/cnet/哈工大/README.md)
-- [斯坦福cs144](../../cs144%201/cs144%20Introdiction.md)
-	- [lab实现](../../cs144%201/cs144%20Introdiction.md#Lab实现)
+- [斯坦福cs144](../../cs144/cs144%20Introdiction.md)
+	- [lab实现](../../cs144/cs144%20Introdiction.md#Lab实现)
 
 
 ## 操作系统
