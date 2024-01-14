@@ -1,6 +1,9 @@
 ---
-tags: [" #data-structure "]
-aliases: [红黑树]
+tags:
+  - "#data-structure"
+aliases:
+  - 红黑树
+  - rbtree
 ---
 ## 简介
 
