@@ -9,7 +9,7 @@ aliases: [cs166, 斯坦福高级数据结构]
 主要是一些进阶的数据结构，当初是看布隆过滤器论文无意间浏览到的。
 
 ## 内容
-1. [范围最小查询](RMQ.md)
+1. [范围最小查询 | RMQ问题](RMQ.md)
 2. [平衡树](Balanced%20Trees.md)
 3. [哈希](Hashing%20and%20Sketching.md)
 4. [布谷鸟哈希](Cuckoo%20Hashing.md)
