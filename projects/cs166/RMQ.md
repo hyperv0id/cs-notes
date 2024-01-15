@@ -1,6 +1,10 @@
 ---
-tags: ["  #data-structure "]
-aliases: [Range Minimize Query, 范围最小查询]
+tags:
+  - "#data-structure"
+  - algorithm/dp
+aliases:
+  - Range Minimize Query
+  - 范围最小查询
 ---
 范围最小查询（Range Minimize Query）
 
@@ -17,7 +21,8 @@ aliases: [Range Minimize Query, 范围最小查询]
 时间复杂度：$O(N)$
 空间复杂度：$O(1)$
 
-### 打小抄
+但是我们宁愿多花点时间用于构造，省下时间来查询，因为查询可能有很多次。
+### 空间换时间 - 打表
 
 提前记录每个查询，到查询时再找
 
@@ -37,7 +42,7 @@ aliases: [Range Minimize Query, 范围最小查询]
 时间复杂度：$O(1)$，构建时间$O(N^2)$
 空间复杂度：$O(1)$
 
-### 打缩印-Block Decomposition
+### 分而治之 - Block Decomposition
 
 将元素数组分成 $b$ 个桶，每个桶里面求出最小值。
 
@@ -50,7 +55,7 @@ aliases: [Range Minimize Query, 范围最小查询]
 - 空间复杂度：$O(b)$
 - 最佳的$b$: $b = \sqrt{n}$，这时时间复杂度：$O(n^{0.5})$
 
-### Sparse Tables
+### Sparse Tables(ST表) - 更小的空间
 
 对于每个索引 $i$ ，计算从 $i$ 开始的范围的RMQ，大小为1、2、4、8、16、…、$2^k$,直到越界
 
@@ -110,7 +115,10 @@ aliases: [Range Minimize Query, 范围最小查询]
 
 ```
 两个数组
+1   3   2   4
 10	30	20	40
+11  31  21  41
+100 300 200 400
 166	361	261	464
 
 无论你如何选择i，j，返回下标都一样！！！
@@ -142,13 +150,11 @@ $$
 
 那么是不是只要笛卡尔树形状相同，就可以说明俩数组等价啦
 
-
-
 #### 构建
 
 构建复杂度如下：
 
-![image-20221203201630345](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/2022/12/03/image-20221203201630345-de0825.png)
+![还没看懂](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/2022/12/03/image-20221203201630345-de0825.png)
 
 计算最小值$O(n)$，数组长为 $b$ 的笛卡尔树一共 $4^b$ 种，当 $b = k \log_{4}{b}$ 且 $k<1$ 时复杂度不超过 $O(n)$，总体复杂度 $O(1)$
 
@@ -157,6 +163,13 @@ $$
 
 
 ![image-20221203195620656](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/2022/12/03/image-20221203195620656-370f39.png)
+
+## 线段树
+
+#todo 
+## 树状数组
+
+#todo 
 
 ## 例题
 
