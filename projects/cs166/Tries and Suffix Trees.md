@@ -9,4 +9,5 @@ aliases: [字典树, 前缀树]
 - Slides:
 	- [Lecture Slides](https://web.stanford.edu/class/cs166/lectures/04/Slides04.pdf)
 	- [Condensed Slides](https://web.stanford.edu/class/cs166/lectures/04/Small04.pdf)
-- Pugh, William. Skip Lists: A Probabilistic Alternative to Balanced Trees
+- Reading
+	- Pugh, William. Skip Lists: A Probabilistic Alternative to Balanced Trees

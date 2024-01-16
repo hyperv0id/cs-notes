@@ -185,7 +185,7 @@ $$
 	- Part Two:
 		- [Lecture Slides](https://web.stanford.edu/class/cs166/lectures/01/Slides01.pdf)
 		- [Condensed Slides](https://web.stanford.edu/class/cs166/lectures/01/Small01.pdf)
-- 论文阅读：Guibas, Leo and Sedgewick, Robert. _A Dichromatic Framework for Balanced Trees
+- 论文阅读：Guibas, Leo and Sedgewick, Robert. A Dichromatic Framework for Balanced Trees
 
 
 
