@@ -16,3 +16,12 @@ aliases: [平衡树]
 
 ## 增强搜索树
 
+## 参考
+- Slides:
+	- [Lecture Slides I](https://web.stanford.edu/class/cs166/lectures/02/Slides02.pdf)
+	- [Condensed Slides I](https://web.stanford.edu/class/cs166/lectures/02/Small02.pdf)
+	- [Lecture Slides II](https://web.stanford.edu/class/cs166/lectures/03/Slides03.pdf)
+	- [Condensed Slides II](https://web.stanford.edu/class/cs166/lectures/03/Small03.pdf)
+- Readings:
+	- Bayer, Rudolf and McCreight, Edward. _[Organization and Maintenance of Large Ordered Indices](https://web.stanford.edu/class/cs166/restricted/papers/BayerMcCreightBTrees.pdf)_
+	- Guibas, Leo and Sedgewick, Robert. _[A Dichromatic Framework for Balanced Trees](https://web.stanford.edu/class/cs166/restricted/papers/GuibasSedgewickRedBlack.pdf)_

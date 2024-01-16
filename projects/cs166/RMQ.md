@@ -6,8 +6,7 @@ aliases:
   - Range Minimize Query
   - 范围最小查询
 ---
-范围最小查询（Range Minimize Query）
-
+范围最小查询（Range Minimize Query）问题如下：给定一个数组，对其进行预处理，以便高效地确定各种子范围内的最小值。RMQ 在计算机科学领域有大量应用，是许多高级算法技术的绝佳试验场。通过使用一种名为笛卡尔树的新数据结构和一种名为四俄方法的技术，我们实现了 RMQ 的⟨O(n)、O(1)⟩-time 解决方案。我们可以调整我们的方法，最终得到一个$O(n)$预处理时间、$O(1)$查询时间的 RMQ 解决方案。在此过程中，我们将看到许多在数据结构设计中会反复出现的巧妙技术。
 ## 问题描述
 给定任意数组 $A$ ，对于任意 $0\leq i<j<A.size()$ 请给出区间 $i-j$ 的最小值
 ![](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/images/2022/12/02/20221202204133-1410bb.png)
@@ -177,6 +176,16 @@ $$
 - [654. 最大二叉树 | 力扣](https://leetcode.cn/problems/maximum-binary-tree/solutions/)
 	- [C++ 8 lines O(n log n) map, plus stack with binary search - LeetCode Discuss](https://leetcode.com/problems/maximum-binary-tree/discuss/106147/c-8-lines-on-log-n-map-plus-stack-with-binary-search)
 - [acwing RMQ系列题库](https://www.acwing.com/problem/search/1/?search_content=RMQ)
+
+## 参考
+- Slides:
+	- Part One
+		- [Lecture Slides](https://web.stanford.edu/class/cs166/lectures/00/Slides00.pdf)
+		- [Condensed Slides](https://web.stanford.edu/class/cs166/lectures/00/Small00.pdf)
+	- Part Two:
+		- [Lecture Slides](https://web.stanford.edu/class/cs166/lectures/01/Slides01.pdf)
+		- [Condensed Slides](https://web.stanford.edu/class/cs166/lectures/01/Small01.pdf)
+- 论文阅读：Guibas, Leo and Sedgewick, Robert. _A Dichromatic Framework for Balanced Trees
 
 
 
