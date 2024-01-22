@@ -91,26 +91,29 @@ $ ./grade-lab-util sleep
 #include "kernel/stat.h"
 #include "user/user.h"
 
-int main(int argc, char* argv[]){
+int main(int argc, char *argv[])
+{
     // 0用于读，1用于写
     int p2c[2], c2p[2]; // 两个管道
-    pipe(p2c); // 父进程 -> 子进程 的管道
-    pipe(c2p); // 子进程 -> 父进程 的管道
+    pipe(p2c);          // 父进程 -> 子进程 的管道
+    pipe(c2p);          // 子进程 -> 父进程 的管道
 
-    if(fork() != 0){
+    if (fork() != 0)
+    {
         // I'm Parent
         write(p2c[1], "!", 1); // send to child
         char buf;
-        read(c2p[0], &buf, 1); // read from child  
-        printf("%d: received pong!\n", getpid());
+        read(c2p[0], &buf, 1); // read from child
+        printf("%d: received pong\n", getpid());
         wait(0);
     }
-    else{
+    else
+    {
         // I'm Child
         char buf;
-        read(p2c[0], &buf, 1); // read from parent  
-        printf("%d: received ping!\n", getpid());
-        write(c2p[1], "!", 1); // send to child 
+        read(p2c[0], &buf, 1); // read from parent
+        printf("%d: received ping\n", getpid());
+        write(c2p[1], "!", 1); // send to child
     }
     exit(0);
 }
@@ -121,7 +124,7 @@ int main(int argc, char* argv[]){
 ## primes（中难）
 
 使用管道实现求质数，看不懂要干啥的看这里：[Bell Labs and CSP Threads](https://swtch.com/~rsc/thread/)
-![Uploading file...99mo8]()
+![img](https://swtch.com/~rsc/thread/sieve.gif)
 
 
 基本原理还是[埃式筛](https://oi-wiki.org/math/number-theory/sieve/#%E5%9F%83%E6%8B%89%E6%89%98%E6%96%AF%E7%89%B9%E5%B0%BC%E7%AD%9B%E6%B3%95)，直接原来是开一个数组存bool，现在将开一个数组存子进程
@@ -139,65 +142,42 @@ int main(int argc, char* argv[]){
  *      if (p does not divide n)
  *          send n to right neighbor
  */
-void prime(int msg){
+void prime(int msg)
+{
     int n;
-    // no message
-    if(read(msg, &n, 4) == 0)exit(0);
-    printf("%d is prime\n", n);
+    if (read(msg, &n, 4) == 0)
+        exit(0);
 
-    int pip[2]; // pipe
-    pipe(pip);
-    
-    int pid = fork();
-    
-    // create a child process and send message to the child,
-    // like what we do in main() function
-    if (pid != 0)
+    while ((read(msg, &n, 4) != 0))
     {
-        close(pip[0]);
-        // i'm parent
-        int next_num = -1;
-        // get all the number from left neighbor
-        while (read(msg, &next_num, 4) != 0)
-        {
-            if (next_num % n != 0)
-            {
-                write(pip[1], &next_num, 4);// send it to the right
-            }
-        }
-        close(pip[1]);
-        wait(0);
-    }
-    else
-    {
-        // i'm child
-        close(pip[1]);
-        prime(pip[0]);
-        close(pip[0]);
+        if (msg % n != 0)
+            printf("prime %d\n", n);
     }
 }
 
-int main(int argc, char* argv[]){
+int main(int argc, char *argv[])
+{
     int pip[2]; // pipe
     pipe(pip);
 
     int pid = fork();
-    if(pid != 0){
+    if (pid != 0)
+    {
         // root
         close(pip[0]); // do not read
         for (int i = 2; i <= 35; i++)
         {
             write(pip[1], &i, 4); // send message to childs
         }
-        close(pip[1]);// write done
+        close(pip[1]); // write done
         wait(0);
-
-    }else{
+    }
+    else
+    {
         // first child
         close(pip[1]); // i won't write
         prime(pip[0]); // read
-        close(pip[0]); //read done
-
+        close(pip[0]); // read done
     }
     exit(0);
 }

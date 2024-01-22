@@ -66,9 +66,9 @@ QEMU emulator version 4.1.0
 
 #### 错误处理：自己编译工具链
 
-如果报错，即使能运行xv6，也无法调试，那么可能得[自己编译](https://stackoverflow.com/questions/68611071/how-to-install-riscv64-gdbhttps://stackoverflow.com/questions/68611071/how-to-install-riscv64-gdb)了：
+如果报错，即使能运行xv6，也**无法调试**，那么可能得[自己编译](https://stackoverflow.com/questions/68611071/how-to-install-riscv64-gdbhttps://stackoverflow.com/questions/68611071/how-to-install-riscv64-gdb)了：
 
-下载源代码：
+下载源代码([百度网盘]())：
 
 ```
 $ git clone --recursive https://github.com/riscv/riscv-gnu-toolchain
@@ -79,7 +79,9 @@ $ git clone --recursive https://github.com/riscv/riscv-gnu-toolchain
 ```shell
 sudo apt-get install autoconf automake autotools-dev curl python3 libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev ninja-build # 编译依赖项
 ./configure --prefix=/usr/local/riscv
-make # sudo make 也行
+make # 可能需要sudo
+# make -j8 # 多线程提速，8指8个线程
+# make install # 可能的步骤
 ```
 
 配置环境变量
