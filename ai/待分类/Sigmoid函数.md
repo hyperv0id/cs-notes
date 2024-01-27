@@ -5,11 +5,8 @@ aliases:
   - Sigmoid 函数
 tags:
   - ai/激活函数
+  - math
 ---
-
-
-#todo 
-
 将一个实数域上的值映射到`[0,1]`空间，十分适合线性分类问题。
 ![image.png](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/2024/01/11/20240111143301-8ad4d0.png)
 
@@ -24,3 +21,4 @@ Sigmoid函数的特性与优缺点：
 - 明确的预测，即非常接近1或0。
 - 函数输出不是以0为中心的，这会降低权重更新的效率
 - Sigmoid函数执行指数运算，计算机运行得较慢。
+

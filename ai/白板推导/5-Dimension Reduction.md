@@ -37,5 +37,5 @@ $$
 
 ![image-20240111204151249](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/2024/01/11/image-20240111204151249-28ef2c.png)
 
-
+## [PCA](../待分类/PCA.md)
 ![PCA](../待分类/PCA.md)

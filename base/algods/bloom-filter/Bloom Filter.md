@@ -1,5 +1,8 @@
 ---
-tags: ["#data-structure/bloom-filter"]
+tags:
+  - "#data-structure/bloom-filter"
+aliases:
+  - 布隆过滤器
 ---
 
 ## 开始之前
@@ -702,7 +705,7 @@ public class StandardBloomFilterTest {
 
 
 
-## 布隆过滤器增强版
+## 布隆过滤器变体
 
 - 可以删除的布隆过滤器：[Count Bloom Filter（CBF）](Count%20Bloom%20Filter（CBF）.md)
 - 可以变长的布隆过滤器：

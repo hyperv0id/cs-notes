@@ -65,5 +65,5 @@ tags: redis
 
 - 检查非法请求
 - 缓存空值、默认值
-- 布隆过滤器
+- [布隆过滤器](../../../../base/algods/bloom-filter/Bloom%20Filter.md)
 

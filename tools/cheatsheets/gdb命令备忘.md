@@ -11,21 +11,37 @@ created: 2023-03-16T00:43:34 (UTC +08:00)
 
 ## gdb 命令
 
-### 运行
 
-- `(gdb) run` 直接运行 (r)
-- `(gdb) continue` 继续运行 (c)
-- `(gdb) step` 运行到下一条源码 (s)
-- `(gdb) stepi` 运行到下一条指令 (si)
-- `(gdb) next` 单步运行，跳过函数 (n)
-- `(gdb) finish` 运行完当前函数 (fin)
+### 配置、杂
+- `gdb`/`gdb <file>`
+	- 文件需要可调试：`gcc -g`
+- 开始会首先执行`.gdbinit`，可以将重复的指令放到这个文件
+- `(gdb) help [cmd]`：打印手册
 - `(gdb) attach <pid>` 连接程序
 - `(gdb) detach` 从当前程序断连
 - `(gdb) target remote localhost:1234` 连接 qemu
+- `(gdb) tui en` 打开两个窗口，一个源码，一个命令行
+- `(gdb) tui dis` 关闭tui
+
+### 运行、结束
+
+- `(gdb) run` 直接运行 (r)
+	- `(gdb) run args`：带参数运行
+- `(gdb) kill`：终止程序
+- `(gdb) quit`：离开gdb `q`,`Ctrl+d`
+	- `(gdb) continue` 继续运行 (c)
+### 执行
+- `(gdb) next` 单步运行，跳过函数 (n)
+- `(gdb) step` 运行到下一条源码 (s)
+- `(gdb) stepi` 运行到下一条指令 (si)
+	- `step i 4`：执行4个指令
+- `(gdb) until 3`：运行，知道碰见断点3
+- `(gdb) finish` 运行完当前函数 (fin)
+- `(gdb) calc foo`：执行某个函数，并打印结果
 
 ### 断点
 
-- `(gdb) break main` 断在符号处 `(b)`
+- `(gdb) break [main]` 断在main符号处 `(b)`
 - `(gdb) break *0x....` 断在地址
 - `(gdb) info breakpoints` 查看断点及状态 `(i b)`
 - `(gdb) delete / clear` 清除所有断点 `(d/cl)`
@@ -47,7 +63,8 @@ created: 2023-03-16T00:43:34 (UTC +08:00)
 
 ### 查看寄存器 / 变量 / 内存
 
-- `(gdb) print/format <what>`
+- `(gdb) print/[format] <expr>`
+	- eg：`print/t expr`二进制打印当前值
     - `format`
         - a: pointer
         - c: int -> char
@@ -58,13 +75,13 @@ created: 2023-03-16T00:43:34 (UTC +08:00)
         - t: int -> bin
         - u: unsigned decimal
         - x: int -> hex
-    - `<what>`
+    - `<expr>`
         - 可以是类 C 表达式
         - 可以是 file_name::variable_name
         - 可以是 function::variable_name
         - 可以是 {type}address
         - 可以是 $register
-- `(gdb) display/format <what>`
+- `(gdb) display/[format] <expr>`
 - `(gdb) undisplay <display#>`
 - `(gdb) enable display <display#>`
 - `(gdb) disable display <display#>`

@@ -1,3 +1,11 @@
+---
+aliases:
+  - 主成分分析
+  - Principal Component Analysis
+tags:
+  - ai/降维
+---
+
 # PCA
 一个中心，两个基本点
 对原始空间的重构
