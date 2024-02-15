@@ -8,6 +8,8 @@
 
 ## Syscall Tracing
 
+应该是`Linux`系统中的`strace`命令
+
 ### 系统调用执行过程
 
 1. 定义一个用户态接口`int trace(int);`(`user.h`)中
@@ -23,15 +25,21 @@ trace:
 ret
 ```
 
+### Lab过程
+
 1. 照着lab提示在proc结构体里面创建新变量`trace_mask`
 2. 在proc初始化时将其一并初始化
 3. 在调用trace时覆盖mask
-4. 还有一个测试用例要求在forkh时也要一并传递mask,在fork中添加复制代码
+4. 还有一个测试用例要求在`fork`时也要一并传递mask,在fork中添加复制代码
 
 编辑器格式化了好多代码TAT，还是看commit吧：[lab-syscall-trace · GitHub](https://github.com/hyperv0id/mit6.828/commit/c40e1a877b3c53338a62a876b345d3265f6a13f8)
 
 
 ## Sysinfo
+
+照着`trace`an一样添加代码，在`def.h`添加相关的入口，在对应文件实现相关函数。
+
+可以注释一部分测试代码分多次排查，不知道怎么给test设断点TAT
 
 ```diff
 diff --git a/Makefile b/Makefile

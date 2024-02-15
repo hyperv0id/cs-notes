@@ -1,5 +1,5 @@
 - [Link](https://pdos.csail.mit.edu/6.828/2023/labs/syscall.html)
-- [Answer](02-syscall.md)
+- [Answer](./answers/02-syscall.md)
 - See Also：
 	- gdb常用命令：[gdb命令备忘](../../../../tools/cheatsheets/gdb命令备忘.md)
 	- 如果不想/不会使用gdb的可以看这个：[从零开始使用Vscode调试XV6 | 知乎](https://zhuanlan.zhihu.com/p/501901665)
