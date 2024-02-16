@@ -1,8 +1,8 @@
-# Lab: networking
+# 实验：网络
 
-In this lab you will write an xv6 device driver for a network interface card (NIC).
+在本实验中，您将为网络接口卡 (NIC) 编写 xv6 设备驱动程序。
 
-Fetch the xv6 source for the lab and check out the `net` branch:
+获取实验室的 xv6 源代码并查看分支`net`：
 
 ```
   $ git fetch
@@ -10,51 +10,51 @@ Fetch the xv6 source for the lab and check out the `net` branch:
   $ make clean
 ```
 
-## Background
+## 背景
 
-Before writing code, you may find it helpful to review "Chapter 5: Interrupts and device drivers" in the [xv6 book](https://pdos.csail.mit.edu/6.828/2023/xv6/book-riscv-rev3.pdf).
+在编写代码之前，您可能会发现查看[xv6书](https://pdos.csail.mit.edu/6.828/2023/xv6/book-riscv-rev3.pdf)的“第 5 章：中断和设备驱动程序”很有帮助。
 
-You'll use a network device called the E1000 to handle network communication. To xv6 (and the driver you write), the E1000 looks like a real piece of hardware connected to a real Ethernet local area network (LAN). In fact, the E1000 your driver will talk to is an emulation provided by qemu, connected to a LAN that is also emulated by qemu. On this emulated LAN, xv6 (the "guest") has an IP address of 10.0.2.15. Qemu also arranges for the computer running qemu to appear on the LAN with IP address 10.0.2.2. When xv6 uses the E1000 to send a packet to 10.0.2.2, qemu delivers the packet to the appropriate application on the (real) computer on which you're running qemu (the "host").
+您将使用名为 E1000 的网络设备来处理网络通信。对于 xv6（以及您编写的驱动程序）来说，E1000 看起来就像一个连接到真实以太网局域网 (LAN) 的真实硬件。事实上，您的驱动程序将与之通信的 E1000 是 qemu 提供的仿真，连接到也由 qemu 仿真的 LAN。在此模拟 LAN 上，xv6（“来宾”）的 IP 地址为 10.0.2.15。 Qemu 还安排运行 qemu 的计算机出现在 IP 地址为 10.0.2.2 的 LAN 上。当 xv6 使用 E1000 将数据包发送到 10.0.2.2 时，qemu 会将数据包传送到运行 qemu（“主机”）的（真实）计算机上的相应应用程序。
 
-You will use QEMU's "user-mode network stack". QEMU's documentation has more about the user-mode stack [here](https://wiki.qemu.org/Documentation/Networking#User_Networking_.28SLIRP.29). We've updated the Makefile to enable QEMU's user-mode network stack and the E1000 network card.
+您将使用 QEMU 的“用户模式网络堆栈”。 QEMU 的文档[在此处](https://wiki.qemu.org/Documentation/Networking#User_Networking_.28SLIRP.29)提供了有关用户模式堆栈的更多信息。我们更新了 Makefile 以启用 QEMU 的用户模式网络堆栈和 E1000 网卡。
 
-The Makefile configures QEMU to record all incoming and outgoing packets to the file `packets.pcap` in your lab directory. It may be helpful to review these recordings to confirm that xv6 is transmitting and receiving the packets you expect. To display the recorded packets:
+Makefile 将 QEMU 配置为将所有传入和传出数据包记录到`packets.pcap`实验室目录中的文件中。查看这些记录可能会有助于确认 xv6 正在传输和接收您期望的数据包。显示记录的数据包：
 
 ```
 tcpdump -XXnr packets.pcap
 ```
 
-We've added some files to the xv6 repository for this lab. The file `kernel/e1000.c` contains initialization code for the E1000 as well as empty functions for transmitting and receiving packets, which you'll fill in. `kernel/e1000_dev.h` contains definitions for registers and flag bits defined by the E1000 and described in the Intel E1000  [Software Developer's Manual](https://pdos.csail.mit.edu/6.828/2023/readings/8254x_GBe_SDM.pdf). `kernel/net.c` and `kernel/net.h` contain a simple network stack that implements the [IP](https://en.wikipedia.org/wiki/Internet_Protocol), [UDP](https://en.wikipedia.org/wiki/User_Datagram_Protocol), and [ARP](https://en.wikipedia.org/wiki/Address_Resolution_Protocol) protocols. These files also contain code for a flexible data structure to hold packets, called an `mbuf`. Finally, `kernel/pci.c` contains code that  searches for an E1000 card on the PCI bus when xv6 boots.
+我们已为本实验的 xv6 存储库添加了一些文件。该文件`kernel/e1000.c`包含 E1000 的初始化代码以及用于发送和接收数据包的空函数（您将填写这些函数）。包含由 E1000 定义并在《英特尔 E1000[软件开发人员手册》](https://pdos.csail.mit.edu/6.828/2023/readings/8254x_GBe_SDM.pdf)`kernel/e1000_dev.h`中描述的寄存器和标志位的定义 。并包含一个实现[IP](https://en.wikipedia.org/wiki/Internet_Protocol)、[UDP](https://en.wikipedia.org/wiki/User_Datagram_Protocol)和[ARP](https://en.wikipedia.org/wiki/Address_Resolution_Protocol)协议的简单网络堆栈。这些文件还包含用于保存数据包的灵活数据结构的代码，称为.最后，包含当 xv6 启动时在 PCI 总线上搜索 E1000 卡的代码。`kernel/net.c``kernel/net.h``mbuf``kernel/pci.c`
 
-## Your Job ([hard](https://pdos.csail.mit.edu/6.828/2023/labs/guidance.html))
+## 你的工作（[困难](https://pdos.csail.mit.edu/6.828/2023/labs/guidance.html)）
 
-Your job is to complete `e1000_transmit()` and `e1000_recv()`, both in `kernel/e1000.c`, so that the driver can transmit and receive packets. You are done when `make grade` says your solution passes all the tests.
+你的工作是完成中的`e1000_transmit()`和，以便驱动程序可以发送和接收数据包。当您的解决方案通过所有测试时，您就完成了。`e1000_recv()``kernel/e1000.c``make grade`
 
-While writing your code, you'll find yourself referring to the E1000 [Software Developer's Manual](https://pdos.csail.mit.edu/6.828/2023/readings/8254x_GBe_SDM.pdf). Of particular help may be the following sections:    
+在编写代码时，您会发现自己正在参考 E1000[软件开发人员手册](https://pdos.csail.mit.edu/6.828/2023/readings/8254x_GBe_SDM.pdf)。以下部分可能特别有帮助：
 
-- Section 2 is essential and gives an overview of the entire device.
-- Section 3.2 gives an overview of packet receiving.
-- Section 3.3 gives an overview of packet transmission, alongside section 3.4.
-- Section 13 gives an overview of the registers used by the E1000.
-- Section 14 may help you understand the init code that we've provided.
+- 第 2 节很重要，概述了整个器件。
+- 3.2 节给出了数据包接收的概述。
+- 3.3 节与 3.4 节一起概述了数据包传输。
+- 第 13 节概述了 E1000 使用的寄存器。
+- 第 14 节可以帮助您理解我们提供的初始化代码。
 
-Browse the E1000 [Software Developer's Manual](https://pdos.csail.mit.edu/6.828/2023/readings/8254x_GBe_SDM.pdf). This manual covers several closely related Ethernet controllers. QEMU emulates the 82540EM. Skim Chapter 2 now to get a feel for the device.  To write your driver, you'll need to be familiar with Chapters 3 and 14, as well as 4.1 (though not 4.1's subsections).  You'll also need to use Chapter 13 as a reference.  The other chapters mostly cover components of the E1000 that your driver won't have to interact with.  Don't worry about the details at first; just get a feel for how the document is structured so you can find things later. The E1000 has many advanced features, most of which you can ignore. Only a small set of basic features is needed to complete this lab.
+浏览 E1000[软件开发人员手册](https://pdos.csail.mit.edu/6.828/2023/readings/8254x_GBe_SDM.pdf)。本手册涵盖了几个密切相关的以太网控制器。 QEMU 模拟 82540EM。现在浏览第 2 章来感受一下该设备。要编写驱动程序，您需要熟悉第 3 章和第 14 章以及 4.1（尽管不是 4.1 的小节）。您还需要使用第 13 章作为参考。其他章节主要介绍驱动程序无需与之交互的 E1000 组件。一开始不要担心细节；只需感受一下文档的结构，以便稍后查找。 E1000 有许多高级功能，其中大部分您可以忽略。完成本实验只需要一小组基本功能。
 
-The `e1000_init()` function we provide you in `e1000.c` configures the E1000 to read packets to be transmitted from RAM, and to write received packets to RAM. This technique is called DMA, for direct memory access, referring to the fact that the E1000 hardware directly writes and reads packets to/from RAM.
+`e1000_init()`我们为您提供的功能将E1000`e1000.c`配置为从 RAM 中读取要发送的数据包，并将接收到的数据包写入 RAM。这种技术称为 DMA，即直接内存访问，指的是 E1000 硬件直接向 RAM 写入数据包或从 RAM 读取数据包的事实。
 
-Because bursts of packets might arrive faster than the driver can process them, `e1000_init()` provides the E1000 with multiple buffers into which the E1000 can write packets. The E1000 requires these buffers to be described by an array of "descriptors" in RAM; each descriptor contains an address in RAM where the E1000 can write a received packet. `struct rx_desc` describes the descriptor format. The array of descriptors is called the receive ring, or receive queue. It's a circular ring in the sense that when the card or driver reaches the end of the array, it wraps back to the beginning. `e1000_init()` allocates `mbuf` packet buffers  for the E1000 to DMA into, using `mbufalloc()`. There is also a transmit ring into which the driver should place packets it wants the E1000 to send. `e1000_init()` configures the two rings to have size `RX_RING_SIZE` and `TX_RING_SIZE`.
+由于数据包突发的到达速度可能比驱动程序处理它们的速度快，因此`e1000_init()`为 E1000 提供了多个缓冲区，E1000 可以将数据包写入其中。 E1000 要求这些缓冲区由 RAM 中的“描述符”数组来描述；每个描述符都包含 RAM 中的一个地址，E1000 可以将接收到的数据包写入其中。`struct rx_desc`描述描述符格式。描述符数组称为接收环或接收队列。从某种意义上说，它是一个圆环，当卡或驱动程序到达阵列的末尾时，它会回绕到开头。使用 为 E1000 分配数据包`e1000_init()`缓冲区到 DMA 。还有一个传输环，驱动程序应将其希望 E1000 发送的数据包放入其中。将两个环配置为大小和。`mbuf``mbufalloc()``e1000_init()``RX_RING_SIZE``TX_RING_SIZE`
 
-When the network stack in `net.c` needs to send a packet, it calls `e1000_transmit()` with an mbuf that holds the packet to be sent. Your transmit code must place a pointer to the packet data in a descriptor in the TX (transmit) ring. `struct tx_desc` describes the descriptor format. You will need to ensure that each mbuf is eventually freed, but only after the E1000 has finished transmitting the packet (the E1000 sets the `E1000_TXD_STAT_DD` bit in the descriptor to indicate this).
+当网络堆栈`net.c`需要发送数据包时，它会调用`e1000_transmit()`保存要发送的数据包的 mbuf。您的发送代码必须在 TX（发送）环的描述符中放置一个指向数据包数据的指针。`struct tx_desc`描述描述符格式。您需要确保每个 mbuf 最终都被释放，但只有在 E1000 完成数据包传输之后（E1000`E1000_TXD_STAT_DD`在描述符中设置位来指示这一点）。
 
-When the E1000 receives each packet from the ethernet, it DMAs the packet to the memory pointed to by `addr` in the next RX (receive) ring descriptor. If an E1000 interrupt is not already pending, the E1000 asks the PLIC to deliver one as soon as interrupts are enabled. Your `e1000_recv()` code must scan the RX ring and deliver each new packet's mbuf to the network stack (in `net.c`) by calling `net_rx()`. You will then need to allocate a new mbuf and place it into the descriptor, so that when the E1000 reaches that point in the RX ring again it finds a fresh buffer into which to DMA a new packet.
+当 E1000 从以太网接收到每个数据包时，它会将数据包 DMA 到下`addr`一个 RX（接收）环描述符中指向的内存。如果 E1000 中断尚未挂起，则一旦启用中断，E1000 就会要求 PLIC 立即传送中断。您的`e1000_recv()`代码必须扫描 RX 环并`net.c`通过调用将每个新数据包的 mbuf 传递到网络堆栈（在 中）`net_rx()`。然后，您需要分配一个新的 mbuf 并将其放入描述符中，以便当 E1000 再次到达 RX 环中的该点时，它会找到一个新的缓冲区来将新数据包 DMA 到其中。
 
-In addition to reading and writing the descriptor rings in RAM, your driver will need to interact with the E1000 through its memory-mapped control registers, to detect when received packets are available and to inform the E1000 that the driver has filled in some TX descriptors with packets to send. The global variable `regs` holds a pointer to the E1000's first control register; your driver can get at the other registers by indexing `regs` as an array. You'll need to use indices `E1000_RDT` and `E1000_TDT` in particular.
+除了在 RAM 中读写描述符环之外，您的驱动程序还需要通过其内存映射控制寄存器与 E1000 进行交互，以检测接收到的数据包何时可用，并通知 E1000 驱动程序已填充一些 TX 描述符与要发送的数据包。全局变量保存`regs`指向E1000的第一个控制寄存器的指针；您的驱动程序可以通过索引`regs`为数组来获取其他寄存器。您需要特别使用`E1000_RDT`索引。`E1000_TDT`
 
-To test your driver, run `make server` in one window, and in another window run `make qemu` and then run `nettests` in xv6. The first test in `nettests` tries to send a UDP packet to the host operating system, addressed to the program that `make server` runs. If you haven't completed the lab, the E1000 driver won't actually send the packet, and nothing much will happen.
+要测试您的驱动程序，请`make server`在一个窗口中运行，在另一个窗口中运行`make qemu`，然后`nettests`在 xv6 中运行。第一个测试`nettests`尝试将 UDP 数据包发送到主机操作系统，寻址到正在`make server`运行的程序。如果您尚未完成实验，E1000 驱动程序实际上不会发送数据包，并且不会发生任何事情。
 
-After you've completed the lab, the E1000 driver will send the packet, qemu will deliver it to your host computer, `make server` will see it, it will send a response packet, and the E1000 driver and then `nettests` will see the response packet. Before the host sends the reply, however, it sends an "ARP" request packet to xv6 to find out its 48-bit Ethernet address, and expects xv6 to respond with an ARP reply. `kernel/net.c` will take care of this once you have finished your work on the E1000 driver. If all goes well, `nettests` will print `testing ping: OK`, and `make server` will print `a message from xv6!`.
+完成实验后，E1000 驱动程序将发送数据包，qemu 将其传送到您的主机，您`make server`将看到它，它将发送一个响应数据包，然后 E1000 驱动程序`nettests`将看到响应数据包。然而，在主机发送回复之前，它会向 xv6 发送一个“ARP”请求数据包以找出其 48 位以太网地址，并期望 xv6 以 ARP 回复进行响应。`kernel/net.c`一旦您完成了 E1000 驱动程序的工作，我们就会处理这个问题。如果一切顺利，`nettests`将打印`testing ping: OK`，并将`make server`打印`a message from xv6!`。
 
-tcpdump -XXnr packets.pcap should produce output that starts like this:
+tcpdump -XXnr packet.pcap 应该产生如下所示的输出：
 
 ```
 reading from file packets.pcap, link-type EN10MB (Ethernet)
@@ -78,9 +78,9 @@ reading from file packets.pcap, link-type EN10MB (Ethernet)
         0x0030:  7320 7468 6520 686f 7374 21              s.the.host!
 ```
 
-Your output will look somewhat different, but it should contain the strings "ARP, Request", "ARP, Reply", "UDP", "a.message.from.xv6" and "this.is.the.host".
+您的输出看起来会有所不同，但它应该包含字符串“ARP，Request”，“ARP，Reply”，“UDP”，“a.message.from.xv6”和“this.is.the.host”。
 
-`nettests` performs some other tests, culminating in a DNS request sent over the (real) Internet to one of Google's name servers. You should ensure that your code passes all these tests, after which you should see this output:
+`nettests`执行一些其他测试，最终通过（真实）互联网向 Google 的一台名称服务器发送 DNS 请求。您应该确保您的代码通过所有这些测试，之后您应该看到以下输出：
 
 ```
 $ nettests
@@ -94,82 +94,45 @@ DNS OK
 all tests passed.
 ```
 
-You should ensure that `make grade` agrees that your solution passes.
+您应该确保`make grade`您的解决方案获得通过。
 
-## Hints
+## 提示
 
-Start by adding print statements to `e1000_transmit()` and `e1000_recv()`, and running `make server` and (in xv6) `nettests`. You should see from your print statements that `nettests` generates a call to `e1000_transmit`.
+首先将 print 语句添加到`e1000_transmit()`and `e1000_recv()`，然后运行`make server`and （在 xv6 中）`nettests`。您应该从打印语句中看到`nettests`生成对`e1000_transmit`.
 
-Some hints for implementing `e1000_transmit`:
+实施的一些提示`e1000_transmit`：
 
-- First ask the E1000 for the TX ring index at which it's expecting the next packet, by reading the `E1000_TDT` control register.
--  Then check if the the ring is overflowing. If `E1000_TXD_STAT_DD` is not set in the descriptor indexed by `E1000_TDT`, the E1000 hasn't finished the corresponding previous transmission request, so return an error.
--  Otherwise, use `mbuffree()` to free the last mbuf that was transmitted from that descriptor (if there was one).
--  Then fill in the descriptor. `m->head` points to the packet's content in memory, and `m->len` is the packet length. Set the necessary cmd flags (look at Section 3.3 in the E1000 manual) and stash away a pointer to the mbuf for later freeing.
--  Finally, update the ring position by adding one to `E1000_TDT`  modulo `TX_RING_SIZE`.
--  If `e1000_transmit()` added the mbuf successfully to the ring, return 0.  On failure (e.g., there  is no descriptor available to transmit the mbuf), return -1 so that  the caller knows to free the mbuf.  
+- 首先，通过读取控制寄存器，向 E1000 询问其期望下一个数据包的 TX 环索引`E1000_TDT`。
+- 然后检查环是否溢出。如果`E1000_TXD_STAT_DD`索引的描述符中没有设置`E1000_TDT`，则 E1000 还没有完成相应的上一次传输请求，因此返回错误。
+- 否则，用于`mbuffree()`释放从该描述符传输的最后一个 mbuf（如果有）。
+- 然后填写描述符。`m->head`指向内存中数据包的内容，`m->len`是数据包长度。设置必要的 cmd 标志（请参阅 E1000 手册中的第 3.3 节）并隐藏指向 mbuf 的指针以供以后释放。
+- `E1000_TDT` 最后，通过对modulo加 1 来更新环位置`TX_RING_SIZE`。
+- 如果`e1000_transmit()`成功将 mbuf 添加到环中，则返回 0。失败时（例如，没有可用于传输 mbuf 的描述符），则返回 -1，以便调用者知道要释放 mbuf。
 
-Some hints for implementing `e1000_recv`:
+实施的一些提示`e1000_recv`：
 
--  First ask the E1000 for the ring index at which the next waiting received packet (if any) is located, by fetching the `E1000_RDT` control register and adding one modulo `RX_RING_SIZE`.
--  Then check if a new packet is available by checking for the `E1000_RXD_STAT_DD` bit in the `status` portion of the descriptor. If not, stop.
--  Otherwise, update the mbuf's `m->len` to the length reported in the  descriptor.  Deliver the mbuf to the  network stack using `net_rx()`. 
--  Then allocate a new mbuf using `mbufalloc()` to replace the one just given to `net_rx()`.   Program its data pointer (`m->head`) into the descriptor.  Clear the descriptor's status bits to zero.
--  Finally, update the `E1000_RDT` register to be the index of the last ring descriptor processed.
-- `e1000_init()` initializes the RX ring with mbufs, and you'll want to look at how it does that and perhaps borrow code.
-- At some point the total number of packets that have ever arrived will exceed the ring size (16); make sure your code can handle that.
+- `E1000_RDT`首先通过获取控制寄存器并加一模来向 E1000 询问下一个等待接收的数据包（如果有）所在的环索引`RX_RING_SIZE`。
+- 然后通过检查描述符部分`E1000_RXD_STAT_DD`中的位来检查新数据包是否可用。`status`如果没有，就停下来。
+- 否则，将 mbuf 更新`m->len`为描述符中报告的长度。使用 将 mbuf 传递到网络堆栈`net_rx()`。
+- 然后使用 分配一个新的 mbuf`mbufalloc()`来替换刚刚给 的 mbuf `net_rx()`。将其数据指针 ( `m->head`) 编程到描述符中。将描述符的状态位清零。
+- 最后，将`E1000_RDT`寄存器更新为最后处理的环描述符的索引。
+- `e1000_init()`使用 mbufs 初始化 RX 环，您会想看看它是如何做到这一点的，也许还想借用代码。
+- 在某个时刻，到达的数据包总数将超过环大小 (16)；确保你的代码可以处理这个问题。
 
-You'll need locks to cope with the possibility that xv6 might use the E1000 from more than one process, or might be using the E1000 in a kernel thread when an interrupt arrives.
+您需要锁来应对 xv6 可能从多个进程使用 E1000，或者当中断到达时可能在内核线程中使用 E1000 的可能性。
 
+## 可选挑战：
 
+下面的挑战练习的一些好处只能在真实的高性能硬件（这意味着基于 x86 的计算机）上进行测量/测试。
 
-## Submit the lab
+- 在本实验中，网络堆栈使用中断来处理入口数据包处理，但不处理出口数据包处理。一种更复杂的策略是在软件中对出口数据包进行排队，并且在任何时候仅向 NIC 提供有限数量的数据包。然后，您可以依靠 TX 中断来重新填充传输环。使用这种技术，可以对不同类型的出口流量进行优先级排序。 （[简单的](https://pdos.csail.mit.edu/6.828/2023/labs/guidance.html)）
+- 提供的网络代码仅部分支持 ARP。实现完整的[ARP 缓存](https://tools.ietf.org/html/rfc826)并将其连接到`net_tx_eth()`. （[缓和](https://pdos.csail.mit.edu/6.828/2023/labs/guidance.html)）
+- E1000支持多个RX和TX环。配置 E1000 为每个核心提供一个环对，并修改网络堆栈以支持多个环。这样做有可能增加网络堆栈可支持的吞吐量并减少锁争用。 （[中等](https://pdos.csail.mit.edu/6.828/2023/labs/guidance.html)），但难以测试/测量
+- `sockrecvudp()`使用单链表来查找目标套接字，效率较低。尝试使用哈希表和 RCU 来提高性能。 （[简单](https://pdos.csail.mit.edu/6.828/2023/labs/guidance.html)），但是认真的实施将很难测试/测量
+- [ICMP](https://tools.ietf.org/html/rfc792)可以提供失败的网络流的通知。检测这些通知并通过套接字系统调用接口将它们作为错误传播。
+- E1000支持多种无状态硬件卸载，包括校验和计算、RSC和GRO。使用其中一项或多项卸载来提高网络堆栈的吞吐量。 （[中等](https://pdos.csail.mit.edu/6.828/2023/labs/guidance.html)），但难以测试/测量
+- 本实验室中的网络堆栈很容易受到活锁的影响。使用讲座中的材料和阅读作业，设计并实施解决方案来解决这个问题。 （[中等](https://pdos.csail.mit.edu/6.828/2023/labs/guidance.html)），但很难测试。
+- 为 xv6 实现 UDP 服务器。 （[缓和](https://pdos.csail.mit.edu/6.828/2023/labs/guidance.html)）
+- 实现一个最小的 TCP 堆栈并下载网页。 （[难的](https://pdos.csail.mit.edu/6.828/2023/labs/guidance.html)）
 
-### Time spent
-
-Create a new file, `time.txt`, and put in a single integer, the number of hours you spent on the lab. git add and git commit the file.
-
-### Answers
-
-If this lab had questions, write up your answers in `answers-*.txt`. git add and git commit these files.
-
-### Submit
-
-Assignment submissions are handled by Gradescope. You will need an MIT gradescope account. See Piazza for the entry code to join the class. Use [this link](https://help.gradescope.com/article/gi7gm49peg-student-add-course#joining_a_course_using_a_course_code) if you need more help joining.
-
-When you're ready to submit, run make zipball, which will generate `lab.zip`. Upload this zip file to the corresponding Gradescope assignment.
-
- If you run make zipball and you have either uncomitted changes or untracked files, you will see output similar to the following:
-
-```
- M hello.c
-?? bar.c
-?? foo.pyc
-Untracked files will not be handed in.  Continue? [y/N]
-```
-
-Inspect the above lines and make sure all files that your lab solution needs are tracked, i.e., not listed in a line that begins with `??`. You can cause `git` to track a new file that you create using git add {filename}.
-
-
-
-
-
-- Please run make grade to ensure that your code passes all of the tests.    The Gradescope autograder will use the same grading program to assign your submission a grade.
-- Commit any modified source code before running make zipball.
-- You can inspect the status of your submission and download the submitted    code at Gradescope. The Gradescope lab grade is your final lab grade.
-
-## Optional Challenges:
-
- Some of the benefits of the challenge exercises below are only measurable/testable on real, high-performance hardware, which means x86-based computers.  
-
--  In this lab, the networking stack uses interrupts to handle ingress packet processing, but not egress packet processing. A more sophisticated strategy would be to queue egress packets in software and only provide a limited number to the NIC at any one time. You can then rely on TX interrupts to refill the transmit ring. Using this technique, it becomes possible to prioritize  different types of egress traffic. ([easy](https://pdos.csail.mit.edu/6.828/2023/labs/guidance.html))  
--  The provided networking code only partially supports ARP. Implement a full [ARP cache](https://tools.ietf.org/html/rfc826) and wire it in to `net_tx_eth()`. ([moderate](https://pdos.csail.mit.edu/6.828/2023/labs/guidance.html))
--  The E1000 supports multiple RX and TX rings. Configure the E1000 to provide a ring pair for each core and modify your networking stack to support multiple rings. Doing so has the potential to increase the throughput that your networking stack can support as well as reduce lock contention. ([moderate](https://pdos.csail.mit.edu/6.828/2023/labs/guidance.html)), but difficult to test/measure  
--  `sockrecvudp()` uses a singly-linked list to find the destination  socket, which is inefficient. Try using a hash  table and RCU instead to increase performance.  ([easy](https://pdos.csail.mit.edu/6.828/2023/labs/guidance.html)), but a serious implementation would difficult to test/measure  
--  [ICMP](https://tools.ietf.org/html/rfc792) can provide notifications of failed networking flows. Detect these notifications and  propagate them as errors through the socket system call interface.  
--  The E1000 supports several stateless hardware offloads, including checksum calculation, RSC, and GRO. Use one or more of these offloads to increase the throughput of your networking stack.  ([moderate](https://pdos.csail.mit.edu/6.828/2023/labs/guidance.html)), but hard to test/measure
--  The networking stack in this lab is susceptible to receive livelock. Using the material in lecture and the reading assignment, devise and implement a  solution to fix it.   ([moderate](https://pdos.csail.mit.edu/6.828/2023/labs/guidance.html)), but hard to test.
--  Implement a UDP server for xv6.  ([moderate](https://pdos.csail.mit.edu/6.828/2023/labs/guidance.html))  
--  Implement a minimal TCP stack and download a web  page. ([hard](https://pdos.csail.mit.edu/6.828/2023/labs/guidance.html))  
-
- If you pursue a challenge problem, whether it is related to networking or  not, please let the course staff know!  
+如果您追求挑战性问题，无论是否与网络相关，请告知课程工作人员！

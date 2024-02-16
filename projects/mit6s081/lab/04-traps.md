@@ -191,36 +191,6 @@ $
 
 通过`test0、test1、test2和test3`后， 运行`usertests -q`以确保没有破坏内核的任何其他部分。
 
-## 提交实验
-
-### 所花费的时间
-
-创建一个新文件time.txt，并输入一个整数，即您在实验室上花费的小时数。 `git add`和`git commit`文件。
-
-### 答案
-
-如果本实验有问题，请将您的答案写在`answers-\*.txt`中。` git add`和`git commit`这些文件。
-
-### 提交
-
-作业提交由 Gradescope 处理。您将需要一个 MIT Gradescope 帐户。请参阅 Piazza 了解加入课程的入场代码。 如果您需要更多加入帮助， 请使用[此链接。](https://help.gradescope.com/article/gi7gm49peg-student-add-course#joining_a_course_using_a_course_code)
-
-当您准备好提交时，运行`make zipball`，这将生成lab.zip。将此 zip 文件上传到相应的 Gradescope 作业。
-
-如果您运行`make zipball`并且有未提交的更改或未跟踪的文件，您将看到类似于以下内容的输出：
-
-```
- M hello.c
-?? bar.c
-?? foo.pyc
-```
-
-检查上述行并确保跟踪实验室解决方案所需的所有文件，即未在以??开头的行中列出。 。您可以使git跟踪您使用 . 创建的新文件 `git add {filename}`。
-
--   请运行make grade以确保您的代码通过所有测试。 Gradescope 自动评分器将使用相同的评分程序为您提交的内容分配评分。
--   在运行之前提交任何修改的源代码`make zipball`。
--   您可以在 Gradescope 检查提交的状态并下载提交的代码。 Gradescope 实验室成绩是您最终的实验室成绩。
-
 ## 可选的挑战练习
 
 -   在`backtrace()`中打印函数名称和行号，而不是数字地址（[hard](https://pdos.csail.mit.edu/6.828/2023/labs/guidance.html)）。

@@ -1,12 +1,12 @@
-# Lab: locks
+# 实验：锁
 
-In this lab you'll gain experience in re-designing code to increase parallelism. A common symptom of poor parallelism on multi-core machines is high lock contention. Improving parallelism often involves changing both data structures and locking strategies in order to reduce contention. You'll do this for the xv6 memory allocator and block cache.
+在本实验中，您将获得重新设计代码以提高并行性的经验。多核机器上并行性差的一个常见症状是高锁争用。提高并行性通常涉及更改数据结构和锁定策略以减少争用。您将为 xv6 内存分配器和块缓存执行此操作。
 
-Before writing code, make sure to read the following    parts from  the [xv6 book](https://pdos.csail.mit.edu/6.828/2023/xv6/book-riscv-rev3.pdf) :    
+在编写代码之前，请务必阅读[xv6 书中](https://pdos.csail.mit.edu/6.828/2023/xv6/book-riscv-rev3.pdf)的以下部分：
 
--  Chapter 6: "Locking" and the corresponding code.     
--  Section 3.5: "Code: Physical memory allocator"     
--  Section 8.1 through 8.3: "Overview", "Buffer cache layer", and    "Code: Buffer cache"     
+- 第6章：“锁定”以及相应的代码。
+- 第 3.5 节：“代码：物理内存分配器”
+- 第 8.1 节到 8.3 节：“概述”、“缓冲区高速缓存层”和“代码：缓冲区高速缓存”
 
 ```
   $ git fetch
@@ -14,9 +14,9 @@ Before writing code, make sure to read the following    parts from  the [xv6 boo
   $ make clean
 ```
 
-## Memory allocator ([moderate](https://pdos.csail.mit.edu/6.828/2023/labs/guidance.html))
+## 内存分配器（[中等](https://pdos.csail.mit.edu/6.828/2023/labs/guidance.html)）
 
-The program user/kalloctest stresses xv6's memory allocator: three  processes grow and shrink their address spaces, resulting in many  calls to `kalloc` and `kfree`.  `kalloc` and `kfree`  obtain `kmem.lock`.  kalloctest prints (as "#test-and-set") the number of  loop iterations in `acquire` due to attempts to acquire a lock  that another core already holds, for the  `kmem` lock and a few other locks.  The number of loop iterations in `acquire`  is a rough measure of lock contention.  The output of `kalloctest` looks similar to this  before you start the lab:
+程序 user/kalloctest 强调 xv6 的内存分配器：三个进程增大和缩小其地址空间，导致对`kalloc`和 的多次调用`kfree`。 `kalloc`并`kfree` 获得`kmem.lock`. kalloctest 打印（作为“#test-and-set”）`acquire`由于尝试获取另一个核心已持有的锁（该 `kmem`锁和其他一些锁）而导致的循环迭代次数。循环迭代次数`acquire` 是锁争用的粗略衡量标准。`kalloctest`在开始实验之前，输出看起来与此类似：
 
 ```
 $ kalloctest
@@ -51,15 +51,15 @@ child done 100000
 test3 OK
 ```
 
-You'll likely see different counts than shown here, and a different order for the top 5 contended locks.
+您可能会看到与此处显示的计数不同的计数，并且前 5 个竞争锁的顺序也不同。
 
-`acquire` maintains, for each lock, the count of calls to `acquire` for that lock, and the number of times the loop in `acquire` tried but failed to set the lock.  kalloctest calls  a system call that causes the kernel to print those counts for the  kmem and bcache locks (which are the focus of this lab) and for  the 5 most contended locks.  If there is lock contention the  number of `acquire` loop iterations will be large.  The system call returns  the sum of the number of loop iterations for the kmem and bcache locks.
+`acquire`对于每个锁，维护对该锁的调用计数，以及尝试但未能设置锁的`acquire`循环次数。 `acquire`kalloctest 调用一个系统调用，使内核打印 kmem 和 bcache 锁（这是本实验的重点）以及 5 个竞争最激烈的锁的计数。如果存在锁争用，则`acquire`循环迭代的次数将会很大。该系统调用返回 kmem 和 bcache 锁的循环迭代次数之和。
 
-For this lab, you must use a dedicated unloaded machine with multiple cores. If you use a machine that is doing other things, the  counts that kalloctest prints will be nonsense. You can use a dedicated Athena workstation, or your own laptop, but don't use a dialup machine.
+对于本实验，您必须使用具有多个内核的专用卸载计算机。如果您使用正在执行其他操作的机器，则 kalloctest 打印的计数将是无意义的。您可以使用专用的 Athena 工作站或您自己的笔记本电脑，但不要使用拨号计算机。
 
-The root cause of lock contention in kalloctest is that `kalloc()` has a  single free list, protected by a single lock.  To remove lock  contention, you will have to redesign the memory allocator to avoid  a single lock and list.  The basic idea is to maintain a free list  per CPU, each list with its own lock. Allocations and frees on different  CPUs can run in parallel, because each CPU will operate on a  different list. The main challenge will be to deal with the case  in which one CPU's free list is empty, but another CPU's list has free  memory; in that case, the one CPU must "steal" part of the other  CPU's free list.  Stealing may introduce lock contention, but that  will hopefully be infrequent.
+kalloctest 中锁争用的根本原因是`kalloc()`具有单个空闲列表，并受单个锁的保护。要消除锁争用，您必须重新设计内存分配器以避免单个锁和列表。基本思想是为每个 CPU 维护一个空闲列表，每个列表都有自己的锁。不同CPU上的分配和释放可以并行运行，因为每个CPU将在不同的列表上操作。主要挑战是处理一个CPU的空闲列表为空，但另一个CPU的列表有空闲内存的情况；在这种情况下，一个 CPU 必须“窃取”另一个 CPU 的空闲列表的一部分。窃取可能会导致锁争用，但希望这种情况不会频繁发生。
 
-Your job is to implement per-CPU freelists, and stealing when a  CPU's free list is empty.  You must give all of your locks names that start with "kmem". That is, you should call `initlock` for each of your locks, and pass a name that starts with "kmem". Run kalloctest to see if your  implementation has reduced lock contention. To check that it can still allocate  all of memory, run `usertests sbrkmuch`. Your output will look similar to that shown below,  with much-reduced contention in total on kmem locks, although  the specific numbers will differ. Make sure all tests in `usertests -q` pass.  `make grade` should say that the kalloctests pass.
+您的工作是实现每个 CPU 的空闲列表，并在 CPU 的空闲列表为空时进行窃取。您必须给出所有以“kmem”开头的锁名称。也就是说，您应该调用`initlock`每个锁，并传递一个以“kmem”开头的名称。运行 kalloctest 来查看您的实现是否减少了锁争用。要检查它是否仍然可以分配所有内存，请运行`usertests sbrkmuch`。您的输出将类似于下图所示，尽管具体数字会有所不同，但 kmem 锁的争用总数大大减少。确保所有测试都`usertests -q`通过。 `make grade`应该说 kalloctests 通过了。
 
 ```
 $ kalloctest
@@ -96,17 +96,17 @@ ALL TESTS PASSED
 $
 ```
 
-Some hints:  
+一些提示：
 
-- You can use the constant `NCPU` from kernel/param.h          
+- `NCPU`您可以使用kernel/param.h 中的常量
 
-- Let `freerange` give all free memory to the CPU      running `freerange`.          
+- 让`freerange`所有空闲内存都给正在运行的CPU `freerange`。
 
-- The function `cpuid` returns the current core number, but     it's only safe to call it and use its result when    interrupts are turned off. You should use    `push_off()` and `pop_off()` to turn    interrupts off and on.        
+- 该函数`cpuid`返回当前的核心编号，但只有在中断关闭时调用它并使用其结果才是安全的。您应该使用 `push_off()`和`pop_off()`来关闭和打开中断。
 
-- Have a look at the `snprintf` function in    kernel/sprintf.c for string formatting ideas. It 	is OK to just      name all locks "kmem" though.          
+- 查看`snprintf`kernel/sprintf.c 中的函数以了解字符串格式化的想法。不过，将所有锁命名为“kmem”就可以了。
 
-- Optionally run your solution using xv6's race detector:      
+- （可选）使用 xv6 的竞赛检测器运行您的解决方案：
 
   ```
   	$ make clean
@@ -116,11 +116,11 @@ Some hints:
         
   ```
 
-  ​      The 
+   的
 
-  kalloctest
+  卡洛测试
 
-   may fail but you shouldn't see any      races.  If the xv6's race detector observes a race, it will      print two stack traces describing the races along the following      lines:      
+  可能会失败，但你不应该看到任何比赛。如果 xv6 的竞争检测器观察到竞争，它将打印两个堆栈跟踪，按照以下几行描述竞争：
 
   ```
   	 == race detected ==
@@ -152,11 +152,11 @@ Some hints:
         
   ```
 
-  ​      On your OS, you can turn a back trace into function names with      line numbers by cutting and pasting it into 
+   在您的操作系统上，您可以通过将回溯跟踪剪切并粘贴到其中，将其转换为带有行号的函数名称
 
-  addr2line
+  地址2线
 
-  :      
+  :
 
   ```
   	 $ riscv64-linux-gnu-addr2line -e kernel/kernel
@@ -182,17 +182,17 @@ Some hints:
         
   ```
 
-  ​      You are not required to run the race detector, but you might      find it helpful.  Note that the race detector slows xv6 down      significantly, so you probably don't want to use it when      running 
+  您不需要运行竞争检测器，但您可能会发现它很有帮助。请注意，竞争检测器会显着减慢 xv6 的速度，因此您可能不想在运行时使用它
 
-  usertests
+  用户测试
 
-  .   
+  。
 
-## Buffer cache  ([hard](https://pdos.csail.mit.edu/6.828/2023/labs/guidance.html))
+## 缓冲区高速缓存（[硬](https://pdos.csail.mit.edu/6.828/2023/labs/guidance.html)）
 
- This half of the assignment is independent from the first half; you can work on this half (and pass the tests) whether or not you have completed the first half.
+这一半的作业与前半部分是独立的；无论您是否完成了前半部分，您都可以完成这半部分（并通过测试）。
 
-If multiple processes use the file system intensively, they  will likely contend for `bcache.lock`, which protects the disk block  cache in kernel/bio.c.  `bcachetest` creates  several processes that repeatedly read different files  in order to generate contention on `bcache.lock`;  its output looks like this (before you complete this lab):
+如果多个进程密集使用文件系统，它们可能会争夺`bcache.lock`，这会保护 kernel/bio.c 中的磁盘块缓存。 `bcachetest`创建多个重复读取不同文件的进程，以便在 上产生争用`bcache.lock`；其输出如下所示（在完成本实验之前）：
 
 ```
 $ bcachetest
@@ -213,11 +213,9 @@ start test1
 test1 OK
 ```
 
-You will likely see different output, but the number of test-and-sets for the `bcache` lock will be high. If you look at the code in `kernel/bio.c`, you'll see that `bcache.lock` protects the list of cached block buffers, the reference count (`b->refcnt`) in each block buffer, and the identities of the cached blocks (`b->dev` and `b->blockno`).
+您可能会看到不同的输出，但锁的测试和设置次数`bcache`会很高。如果您查看 中的代码`kernel/bio.c`，您将看到它`bcache.lock`保护缓存块缓冲区列表、`b->refcnt`每个块缓冲区中的引用计数 ( ) 以及缓存块的标识 (`b->dev`和`b->blockno`)。
 
-
-
-Modify the block cache so that the number of `acquire` loop iterations    for all locks in the bcache is close to zero when running `bcachetest`.    Ideally the sum of the counts for all locks involved in the block    cache should be zero, but it's OK if the sum is less than 500.    Modify `bget`    and `brelse` so that concurrent lookups and releases for    different blocks that are in the bcache are unlikely to conflict    on locks (e.g., don't all have to wait for  `bcache.lock`). You must maintain the invariant that at  most one copy of each block is cached.  When you are done, your  output should be similar to that shown below (though not identical).  Make sure 'usertests -q' still passes.  `make grade` should pass all tests when you are done.
+修改块缓存，使得`acquire`运行时bcache中所有锁的循环迭代次数接近于零`bcachetest`。理想情况下，块缓存中涉及的所有锁的计数总和应为零，但总和小于 500 也可以。修改`bget` ，`brelse`以便 bcache 中不同块的并发查找和释放不太可能发生冲突锁（例如，不必全部等待 `bcache.lock`）。您必须保持每个块最多缓存一个副本的不变性。完成后，您的输出应类似于下图所示（尽管不相同）。确保“usertests -q”仍然通过。 `make grade`完成后应该通过所有测试。
 
 ```
 $ bcachetest
@@ -257,68 +255,31 @@ ALL TESTS PASSED
 $
 ```
 
-Please give all of your locks  names that start with "bcache". That is, you should call `initlock` for each of your locks, and pass a name that starts with "bcache".
+请提供所有以“bcache”开头的锁名称。也就是说，您应该调用`initlock`每个锁，并传递一个以“bcache”开头的名称。
 
-  Reducing contention in the block cache is more  tricky than for kalloc, because bcache buffers are truly  shared among processes (and thus CPUs).  For kalloc, one could eliminate most contention by  giving each CPU its own  allocator; that won't work for the block cache. We suggest you look up block numbers in the cache with a hash table that has a lock per hash bucket.
+减少块缓存中的争用比 kalloc 更棘手，因为 bcache 缓冲区真正在进程（以及 CPU）之间共享。对于 kalloc，可以通过为每个 CPU 提供自己的分配器来消除大多数争用。这不适用于块缓存。我们建议您使用每个哈希桶都有一个锁的哈希表在缓存中查找块号。
 
-There are some circumstances in which it's OK if your solution has lock conflicts:
+在某些情况下，如果您的解决方案存在锁冲突也没关系：
 
-- When two processes concurrently use the same block number. `bcachetest` `test0` doesn't ever do this.
-- When two processes concurrently miss in the cache, and need to find an unused block to replace. `bcachetest` `test0` doesn't ever do this.
-- When two processes concurrently use blocks that conflict in whatever scheme you use to partition the blocks and locks; for example, if two processes use blocks whose block numbers hash to the same slot in a hash table. `bcachetest` `test0` might do this, depending on your design, but you should try to adjust your scheme's details to avoid conflicts (e.g., change the size of your hash table).
+- 当两个进程同时使用相同的块号时。`bcachetest` `test0`从来不这样做。
+- 当两个进程同时在缓存中丢失，并且需要找到一个未使用的块来替换时。`bcachetest` `test0`从来不这样做。
+- 当两个进程同时使用块时，无论您使用什么方案来分区块和锁，这些块都会发生冲突；例如，如果两个进程使用的块的块号散列到哈希表中的同一槽。`bcachetest` `test0`可能会这样做，具体取决于您的设计，但您应该尝试调整方案的详细信息以避免冲突（例如，更改哈希表的大小）。
 
-`bcachetest`'s `test1` uses more distinct blocks than there are buffers,  and exercises lots of file system code paths.
+`bcachetest`使用`test1`比缓冲区更多的不同块，并使用大量文件系统代码路径。
 
-Here are some hints:  
+以下是一些提示：
 
-- Read the description of the block cache in the xv6 book (Section 8.1-8.3).     
-- It is OK to use a fixed number of buckets and not resize the    hash table dynamically. Use a prime number of    buckets (e.g., 13) to reduce the likelihood of hashing conflicts.     
-- Searching in the hash table for a buffer and allocating an      entry for that buffer when the buffer is not found must be      atomic.     
-- Remove the list of all buffers (`bcache.head` etc.)    and don't implement LRU.  With this change `brelse` doesn't    need to acquire the bcache lock. In `bget` you can select    any block that has `refcnt == 0` instead of the    least-recently used one.     
-- You probably won't be able to atomically check for a cached    buf and (if not cached) find an unused buf; you will likely have    to drop all locks and start from scratch if the buffer isn't in    the cache. It is OK to serialize finding an unused buf    in `bget` (i.e., the part of `bget` that selects a    buffer to re-use when a lookup misses in the cache).     
-- Your solution might need to hold two locks in some cases; for    example, during eviction you may need to hold the bcache lock and    a lock per bucket.  Make sure you avoid deadlock.      
-- When replacing a block, you might move a `struct buf` from one    bucket to another bucket, because the new block hashes to a    different bucket.  You might have a    tricky case: the new block might hash to the same bucket as the    old block.  Make sure you avoid deadlock in that case.     
-- Some debugging tips: implement bucket locks but leave the global     bcache.lock acquire/release at the beginning/end of bget to serialize    the code. Once you are sure it is correct without race conditions,    remove the global locks and deal with concurrency issues. You can also    run `make CPUS=1 qemu` to test with one core.     
-- Use xv6's race detector to find potential races (see above how    to use the race detector).            
+- 阅读 xv6 书中对块缓存的描述（第 8.1-8.3 节）。
+- 使用固定数量的桶并且不动态调整哈希表的大小是可以的。使用素数的桶（例如，13）来减少散列冲突的可能性。
+- 在哈希表中搜索缓冲区并在未找到缓冲区时为该缓冲区分配条目必须是原子的。
+- 删除所有缓冲区（等）的列表`bcache.head`，并且不实现 LRU。通过此更改`brelse`不需要获取 bcache 锁。在中`bget`，您可以选择任何有的块，`refcnt == 0`而不是最近最少使用的块。
+- 您可能无法自动检查缓存的 buf 并（如果未缓存）找到未使用的 buf；如果缓冲区不在缓存中，您可能必须放弃所有锁定并从头开始。序列化查找未使用的 buf 是可以的（即，当缓存中查找未命中时，该`bget`部分选择要重用的缓冲区）。`bget`
+- 在某些情况下，您的解决方案可能需要持有两个锁；例如，在驱逐期间，您可能需要持有 bcache 锁和每个存储桶的锁。确保避免僵局。
+- 替换块时，您可能会将块`struct buf`从一个存储桶移动到另一个存储桶，因为新块会散列到不同的存储桶。您可能会遇到一个棘手的情况：新块可能会散列到与旧块相同的存储桶。在这种情况下请确保避免死锁。
+- 一些调试技巧：实现桶锁，但将全局 bcache.lock acquire/release 保留在 bget 的开头/结尾以序列化代码。一旦确定它在没有竞争条件的情况下是正确的，请删除全局锁并处理并发问题。您也可以`make CPUS=1 qemu`使用一个核心来运行测试。
+- 使用 xv6 的竞争检测器来查找潜在的竞争（请参阅上面如何使用竞争检测器）。
 
+## 可选的挑战练习
 
-
-## Submit the lab
-
-### Time spent
-
-Create a new file, `time.txt`, and put in a single integer, the number of hours you spent on the lab. git add and git commit the file.
-
-### Answers
-
-If this lab had questions, write up your answers in `answers-*.txt`. git add and git commit these files.
-
-### Submit
-
-Assignment submissions are handled by Gradescope. You will need an MIT gradescope account. See Piazza for the entry code to join the class. Use [this link](https://help.gradescope.com/article/gi7gm49peg-student-add-course#joining_a_course_using_a_course_code) if you need more help joining.
-
-When you're ready to submit, run make zipball, which will generate `lab.zip`. Upload this zip file to the corresponding Gradescope assignment.
-
- If you run make zipball and you have either uncomitted changes or untracked files, you will see output similar to the following:
-
-```
- M hello.c
-?? bar.c
-?? foo.pyc
-Untracked files will not be handed in.  Continue? [y/N]
-```
-
-Inspect the above lines and make sure all files that your lab solution needs are tracked, i.e., not listed in a line that begins with `??`. You can cause `git` to track a new file that you create using git add {filename}.
-
-
-
-
-
-- Please run make grade to ensure that your code passes all of the tests.    The Gradescope autograder will use the same grading program to assign your submission a grade.
-- Commit any modified source code before running make zipball.
-- You can inspect the status of your submission and download the submitted    code at Gradescope. The Gradescope lab grade is your final lab grade.
-
-## Optional challenge exercises
-
-- maintain the LRU list so that you evict the least-recently used  buffer instead of any buffer that is not in use.      
-- make lookup in the buffer cache lock-free. Hint: use    gcc's `__sync_*` functions. How do you convince yourself    that your implementation is correct?  
+- 维护 LRU 列表，以便逐出最近最少使用的缓冲区，而不是任何未使用的缓冲区。
+- 使缓冲区高速缓存中的查找无锁。提示：使用 gcc 的`__sync_*`函数。您如何说服自己您的实施是正确的？

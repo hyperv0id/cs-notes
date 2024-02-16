@@ -180,6 +180,7 @@ $
 
 - 在 Makefile 的 UPROGS 中添加 `$U/_trace`。
 - 运行 `make qemu`，你会看到编译器**无法编译** `user/trace.c`，因为尚不存在系统调用的用户空间存根：
+
 	1. 在 `user/user.h` 中添加一个系统调用的原型，
 	2. 在 `user/usys.pl` 中添加一个存根，
 	3. 在 `kernel/syscall.h` 中添加一个系统调用号。
@@ -221,37 +222,6 @@ sysinfotest
 - 要收集空闲内存的数量，向 `kernel/kalloc.c` 添加一个函数。
 
 - 要收集进程数量，向 `kernel/proc.c` 添加一个函数。
-
-## 提交实验
-
-### 花费的时间
-
-创建一个新文件，`time.txt`，并输入一个整数，表示你在实验上花费的小时数。使用 `git add` 和 `git commit` 提交这个文件。
-
-### 答案
-
-如果这个实验有问题，将你的答案写在 `answers-*.txt` 中。使用 `git add` 和 `git commit` 提交这些文件。
-
-### 提交
-
-实验的提交由 Gradescope 处理。你需要一个 MIT gradescope 帐户。查看 Piazza 获取加入班级的入口代码。如果需要更多帮助加入，请使用 [此链接](https://help.gradescope.com/article/gi7gm49peg-student-add-course#joining_a_course_using_a_course_code)。
-
-当你准备好提交时，运行 `make zipball`，它将生成 `lab.zip`。将此 zip 文件上传到相应的 Gradescope 作业中。
-
-如果运行 `make zipball` 时有未提交的更改或未跟踪的文件，你将看到类似以下的输出：
-
-```
- M hello.c
-?? bar.c
-?? foo.pyc
-Untracked files will not be handed in.  Continue? [y/N]
-```
-
-检查上面的行，并确保所有实验解决方案所需的文件都被跟踪，即不在以 `??` 开头的行中。你可以使用 `git add {filename}` 命令使 `git` 跟踪你创建的新文件。
-
-- 请运行 `make grade` 确保你的代码通过所有测试。Gradescope 自动评分器将使用相同的评分程序为你的提交分配一个分数。
-- 在运行 `make zipball` 之前提交任何修改过的源代码。
-- 你可以在 Gradescope 上检查提交的状态并下载提交的代码。Gradescope 实验分数是你的最终实验分数。
 
 ## 可选挑战练习
 

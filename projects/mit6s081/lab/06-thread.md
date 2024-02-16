@@ -6,11 +6,10 @@
 
 要开始实验，请切换到线程分支：
 
-```
-  $ git fetch
-  $ git checkout thread
-  $ make clean
-  
+```sh
+git fetch
+git checkout thread
+make clean
 ```
 
 ## Uthread：线程之间的切换（中等难度）
