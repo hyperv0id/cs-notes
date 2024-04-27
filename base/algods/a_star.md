@@ -2,6 +2,8 @@
 aliases:
   - A*
   - A星
+tags:
+  - 搜索算法
 ---
 ## 算法原理
 
@@ -52,3 +54,9 @@ def a_star_search(graph: WeightedGraph, start: Location, goal: Location):
     
     return came_from, cost_so_far
 ```
+
+
+## 优化
+
+- [ ]  [theta \*](https://arxiv.org/pdf/1401.3843)
+-  [lazy theta \*](lazy_theta_star.md)
