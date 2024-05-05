@@ -5,7 +5,6 @@ aliases:
 tags:
   - ai/正则化
 ---
-
 # L2 Ridge
 
 也叫做岭回归。

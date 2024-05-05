@@ -3,7 +3,7 @@ aliases:
   - UCS
   - 统一代价搜索
 tags:
-  - 搜索算法
+  - algorithm/search
 ---
 
 ## 原理

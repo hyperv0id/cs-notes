@@ -2,6 +2,9 @@
 aliases:
   - 模拟退火
   - Simulated Annealing
+tags:
+  - algorithm/optimization
+  - "#algorithm/simulated_annealing"
 ---
 
 

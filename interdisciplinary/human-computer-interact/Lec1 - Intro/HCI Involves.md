@@ -1,3 +1,0 @@
-- ··2Understand user & problems 
-- Design possible  solution
-- evaluate user experience

@@ -3,7 +3,7 @@ aliases:
   - Depth-First Search
   - 深度优先搜索
 tags:
-  - 搜索算法
+  - algorithm/search
 ---
 
 

@@ -3,7 +3,7 @@ aliases:
   - 迭代深化搜索
   - iterative deepening search
 tags:
-  - 搜索算法
+  - "#algorithm/search"
 ---
 
 迭代深化搜索(Iterative Deepening Search, IDS)是一种改进的盲目搜索算法,它结合了深度优先搜索(DFS)和广度优先搜索(BFS)的优点。

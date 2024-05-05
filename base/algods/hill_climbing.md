@@ -2,6 +2,9 @@
 aliases:
   - Hill Climbing
   - 爬山算法
+tags:
+  - algorithm/optimization
+  - "#algorithm/greedy"
 ---
 ## 基本步骤
 

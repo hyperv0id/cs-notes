@@ -1,7 +1,7 @@
 ---
 tags:
   - ai
-  - text-to-speech
+  - ai/text-to-speech
 aliases:
   - opanai-whisper
 ---

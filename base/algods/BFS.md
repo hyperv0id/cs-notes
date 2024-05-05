@@ -3,7 +3,7 @@ aliases:
   - 宽度优先搜索
   - Breadth-First Search
 tags:
-  - 搜索算法
+  - algorithm/search
 ---
 
 1. 从根节点开始,首先访问该节点。

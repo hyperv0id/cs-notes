@@ -3,7 +3,7 @@ aliases:
   - A*
   - A星
 tags:
-  - 搜索算法
+  - "#algorithm/search"
 ---
 ## 算法原理
 
