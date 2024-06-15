@@ -1,5 +1,5 @@
 ---
-tags: ["#spring #spring/spring-mvc"]
+tags: ["#java/spring #java/spring/spring-mvc"]
 ---
 # SpringMVC
 

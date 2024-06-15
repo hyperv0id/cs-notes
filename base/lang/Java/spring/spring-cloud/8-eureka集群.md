@@ -1,5 +1,5 @@
 ---
-tags: ["#spring #spring/spring-cloud"]
+tags: ["#java/spring #java/spring/spring-cloud"]
 ---
 ![image-20221117193426852](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/2022/11/17/image-20221117193426852-871101.png)
 

@@ -86,6 +86,7 @@ ELF 文件格式支持 8 位/32 位体系结构。当然，这种格式是可以
 
 ELF Header 描述了 ELF 文件的概要信息，利用这个数据结构可以索引到 ELF 文件的全部信息，数据结构如下：
 
+```c
 #define EI_NIDENT   16  
 ​  
 typedef struct {  
@@ -104,6 +105,7 @@ typedef struct {
     ELF32_Half  e_shnum;  
     ELF32_Half  e_shstrndx;  
 } Elf32_Ehdr;
+```
 
 其中每个成员都是 e 开头的，它们应该都是 ELF 的缩写。每个成员具体的说明如下。
 

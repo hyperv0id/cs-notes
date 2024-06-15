@@ -1,8 +1,8 @@
 ---
 Category: java
 tags:
-  - "#spring"
-  - "#spring/spring-cloud"
+  - "#java/spring"
+  - "#java/spring/spring-cloud"
 Parent:
   - - Spring
 ---

@@ -1,5 +1,5 @@
 ---
-tags: ["#spring #spring/spring-security "]
+tags: ["#java/spring #java/spring/spring-security "]
 ---
 # SpringSecurity从入门到精通
 

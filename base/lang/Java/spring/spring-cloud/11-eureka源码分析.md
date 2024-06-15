@@ -1,5 +1,5 @@
 ---
-tags: ["#spring #spring/spring-cloud"]
+tags: ["#java/spring #java/spring/spring-cloud"]
 ---
 
 ## eureka运作原理特点

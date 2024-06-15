@@ -1,6 +1,5 @@
 ---
-Category: #spring/spring-security 
-tags: ["#spring #spring/spring-security"]
+tags: ["#java/spring #java/spring/spring-security"]
 Parent: [[Spring]]
 ---
 

@@ -1,7 +1,7 @@
 ---
 tags:
-  - spring/spring-cloud
-  - spring
+  - java/spring/spring-cloud
+  - java/spring
 Category: spring-cloud
 ---
 

@@ -1,5 +1,5 @@
 ---
-tags: ["#spring #spring/spring-cloud"]
+tags: ["#java/spring #java/spring/spring-cloud"]
 ---
 # 客户端配置
 
