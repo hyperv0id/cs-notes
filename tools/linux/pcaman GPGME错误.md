@@ -16,8 +16,6 @@ sudo rm -r /var/lib/pacman/sync
 # sudo rm /var/lib/pacman/sync/*.sig
 ```
 
-
-
 ## 原理
 
 pacman 更新系统时会尝试下载数据库签名`$*.db.sig`，但大多数数据库没有签名，因此不会影响。
