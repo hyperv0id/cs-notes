@@ -2,6 +2,8 @@
 aliases:
   - LOOK算法
   - LOOK调度
+  - C-LOOK
+  - 循环电梯
 ---
 
 
