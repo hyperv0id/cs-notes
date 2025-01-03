@@ -41,3 +41,7 @@ SCAN算法是一种简单而有效的磁盘调度策略，它通过模拟电梯�
 ## 例子
 
 ![在这里插入图片描述](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/2024/07/06/20200408181128552-19f393.png)
+
+![img](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/2024/11/22/paste-d6bec2eeb79f4ac2a57aee9b14ba50231b1f7f1e-22b00a.png)
+
+![img](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/2024/11/22/paste-77cea9d4c45014bf6f60a558a7fa0af99e4bd715-854e33.png)

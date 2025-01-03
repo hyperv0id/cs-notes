@@ -29,4 +29,10 @@ C-SCAN算法适用于那些磁盘访问请求较为均匀分布的场景，尤�
 
 ## 例子
 
+![2024-408真题32](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/2024/11/19/image-20241119183934278-2bac9e.png)
+
+![2024-408真题32解析](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/2024/11/19/image-20241119184132995-8a418b.png)
+
+
+
 ![img](https://pic-1257412153.cos.ap-nanjing.myqcloud.com/images/2024/07/06/2020040818161071-5e33f9.png)
