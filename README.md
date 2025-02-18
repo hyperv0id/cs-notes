@@ -3,16 +3,16 @@
 
 ## 计算机基础
 
-### 数据结构与算法
+## 数据结构与算法
 
 
-### 计算机网络
+## 计算机网络
 
 - [哈工大计算机网络笔记](base/cnet/哈工大/README.md)
-- [斯坦福cs144](pojo/cs144%201/cs144%20Introdiction.md)
-	- [lab实现](pojo/cs144%201/cs144%20Introdiction.md#Lab实现)
+- [斯坦福cs144](projects/cs144/cs144%20Introdiction.md)
+	- [lab实现](projects/cs144/cs144%20Introdiction.md#Lab实现)
 
-### 编译原理
+## 编译原理
 
 - [0-简介](base/compiler/nju编译原理/notes/0-intro.md)
 - 词法分析：
@@ -29,45 +29,29 @@
 - [10-llvm-ir](base/compiler/nju编译原理/notes/10-llvm-ir.md)
 - [11-ir-expr-control](base/compiler/nju编译原理/notes/11-ir-expr-control.md)
 
-### 设计模式
-![进度](https://progress-bar.dev/5/?scale=28&suffix=/28)
-- [设计原则](base/design-pattern/README.md#设计原则)
-- [常见设计模式](base/design-pattern/README.md#常见设计模式)
+## 设计模式
+- [设计模式与设计原则](base/design-pattern/设计模式与设计原则.md)
 
-### 语言
+# 系统领域
 
-#### 汇编
-- [汇编语言-基于x86处理器](base/lang/assembly/汇编语言-基于x86处理器.md)
-- [汇编语言-基于x86处理器-练习](base/lang/assembly/汇编语言-基于x86处理器-练习.md)
-
-#### cpp
-- [C++核心编程](base/lang/cpp/C++核心编程.md)
-- [C++提高编程](base/lang/cpp/C++提高编程.md)
-
-#### Java
-
-- [Java Web](base/lang/Java/Java%20Web.md)
-- [Spring](base/lang/Java/spring/Spring.md)
-	- [Spring MVC](base/lang/Java/spring/SpringMVC.md)
-	- [Spring Cloud](base/lang/Java/spring/spring-cloud/README.md)
-## 系统领域
-
-### 操作系统
+## 操作系统
+### [MIT操作系统课程简介](projects/mit6s081/简介.md)
+- [01-util](projects/mit6s081/lab/01-util.md)
+- 
 
 
-### 数据库
+## 数据库
 
 
-## 机器学习&AI
+# 机器学习&AI
 
-### 李宏毅机器学习
+## 李宏毅机器学习
 - [Task01](ai/LeeML/Task01.md)
 - [Task05-网络设计技巧](ai/LeeML/Task05-网络设计技巧.md)
 - [Task06-卷积神经网络](ai/LeeML/Task06-卷积神经网络.md)
 
-### 周志华西瓜书浅读
+## 周志华西瓜书浅读
 
-![进度](https://progress-bar.dev/6/?scale=16&suffix=/16)
 - [3-线性模型](ai/watermelon/3-线性模型.md)
 - [4-决策树](ai/watermelon/4-决策树.md)
 - [5-神经网络](ai/watermelon/5-神经网络.md)
@@ -76,11 +60,11 @@
 - 8-集成学习
 
 
-## 项目
+# 项目
 
-### 扩展布隆过滤器
+## 扩展布隆过滤器
 - 项目地址：[bloom-filter](https://github.com/hyperv0id/bloom-filter)
-- 笔记地址：[一起来扩展布隆过滤器](pojo/字节镜像计划/一起来扩展布隆过滤器/项目内容.md)
+- 笔记地址：[一起来扩展布隆过滤器](projects/字节镜像计划/一起来扩展布隆过滤器/项目内容.md)
 
 
 

@@ -98,7 +98,7 @@ $
 
 一些提示：
 
-- `NCPU`您可以使用kernel/param.h 中的常量
+- `NCPU`您可以使用`kernel/param.h` 中的常量
 
 - 让`freerange`所有空闲内存都给正在运行的CPU `freerange`。
 
