@@ -90,9 +90,12 @@ Desgin and Analysis of Algorithms（算法设计和分析）
 
 ### 扩展布隆过滤器
 - 项目地址：[bloom-filter](https://github.com/hyperv0id/bloom-filter)
-- 笔记地址：[一起来扩展布隆过滤器](pojo/字节镜像计划/一起来扩展布隆过滤器/项目内容.md)
+- 笔记地址：[一起来扩展布隆过滤器](../../字节镜像计划/一起来扩展布隆过滤器/项目内容.md)
+### mit6.824操作系统
 
-
+- 代码仓库（[私有仓库](https://github.com/hyperv0id/mit6.828)）
+- 笔记地址：[MIT操作系统课程简介](../../mit6s081/简介.md)
+- 题解地址：[01-util](../../mit6s081/lab/answers/01-util.md)
 
 ## 工具
 
