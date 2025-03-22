@@ -50,5 +50,3 @@ irqbypass              12288  1 kvm
 ```
 
 如果没有需要手动加载modprobe：[内核模块 - Arch Linux 中文维基](https://wiki.archlinuxcn.org/wiki/%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97#%E6%89%8B%E5%8A%A8%E5%8A%A0%E8%BD%BD%E6%97%B6%E8%AE%BE%E7%BD%AE)
-
-- [ ] (@[[2024-01-05]]) kvm wiki
